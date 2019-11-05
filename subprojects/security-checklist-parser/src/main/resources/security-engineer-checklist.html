@@ -1,0 +1,2638 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+    <!--
+        ___  __ _ _ __ ___  ___ _ __
+       / __|/ _` | '__/ _ \/ _ \ '_  \
+       \__ \ (_| | | |  __/  __/ | | |
+       |___/\__, |_|  \___|\___|_| |_|
+               |_|
+   -->
+
+    <meta charset=UTF-8 />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Security Engineer Checklist</title>
+
+
+    <meta name="description" content="Learn how to prioritize your security efforts as the first security engineer or CISO in a startup." />
+
+    <link rel="canonical" href="https://www.sqreen.com/checklists/security-engineer-checklist">
+
+    <!-- Style -->
+    <link href="https://www.sqreen.com/css/style.css" rel="stylesheet"/>
+
+    <meta name="application-name" content="Sqreen" />
+    <meta http-equiv="cleartype" content="on" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@SqreenIO">
+    <meta name="twitter:creator" content="@SqreenIO" />
+    <meta name="twitter:url" content="https://www.sqreen.com/checklists/security-engineer-checklist">
+    <meta name="twitter:text:title" content="Security Engineer Checklist">
+    <meta name="twitter:description" content="Learn how to prioritize your security efforts as the first security engineer or CISO in a startup." />
+    <meta name="twitter:image" content="/assets/img/uploads/share.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="https://www.sqreen.com/checklists/security-engineer-checklist">
+    <meta property="og:title" content="Security Engineer Checklist">
+    <meta property="og:image" content="/assets/img/uploads/share.png">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="627">
+    <meta property="og:description" content="Learn how to prioritize your security efforts as the first security engineer or CISO in a startup.">
+    <meta property="og:site_name" content="Sqreen">
+    <meta property="og:locale" content="en_US">
+
+
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/favicon/manifest.json">
+    <link rel="mask-icon" href="/assets/img/favicon/safari-pinned-tab.svg" color="#4842b7">
+    <meta name="theme-color" content="#4842b7">
+
+    <!-- Segment -->
+    <script type="text/javascript">
+        ! function() {
+            var analytics = window.analytics = window.analytics || [];
+            if (!analytics.initialize)
+                if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
+                else {
+                    analytics.invoked = !0;
+                    analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "page", "once", "off", "on"];
+                    analytics.factory = function(t) {
+                        return function() {
+                            var e = Array.prototype.slice.call(arguments);
+                            e.unshift(t);
+                            analytics.push(e);
+                            return analytics
+                        }
+                    };
+                    for (var t = 0; t < analytics.methods.length; t++) {
+                        var e = analytics.methods[t];
+                        analytics[e] = analytics.factory(e)
+                    }
+                    analytics.load = function(t) {
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = !0;
+                        e.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
+                        var n = document.getElementsByTagName("script")[0];
+                        n.parentNode.insertBefore(e, n)
+                    };
+                    analytics.SNIPPET_VERSION = "3.1.0";
+                    analytics.load("5nxb5iyxWJCBesRTBrDlKocYYhI0yk6H");
+                    analytics.page()
+                }
+        }();
+    </script>
+
+    <script src="/assets/js/purser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.5.0/qs.min.js"></script>
+    <script type="text/javascript">var tracking = Object.assign({},Qs.parse(location.search, { ignoreQueryPrefix: true }),purser.fetch(),{originalReferrer: (window.sessionStorage && sessionStorage.getItem('referrer'))? sessionStorage.getItem('referrer'): document.referrer});if (window.sessionStorage && !sessionStorage.getItem('referrer')) {sessionStorage.setItem('referrer', document.referrer)}window.analytics.page(null, null, tracking);document.cookie = 'tracking=' + JSON.stringify(tracking) + ';domain=sqreen.com';</script>
+
+    <!-- Heap Analytics -->
+    <script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};heap.load("3784968534");</script>
+
+    <!-- Fullstory -->
+    <script>
+        window['_fs_debug'] = false;
+        window['_fs_host'] = 'fullstory.com';
+        window['_fs_org'] = 'H52T8';
+        window['_fs_namespace'] = 'FS';
+        (function(m,n,e,t,l,o,g,y){
+            if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+            g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+            o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js';
+            y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+            g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+            g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+            g.consent=function(a){g("consent",!arguments.length||a)};
+            g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+            g.clearUserCookie=function(){};
+        })(window,document,window['_fs_namespace'],'script','user');
+    </script>
+
+    <!-- SUMO -->
+    <script async>(function(s,u,m,o,j,v){j=u.createElement(m);v=u.getElementsByTagName(m)[0];j.async=1;j.src=o;j.dataset.sumoSiteId='0192db87363591a2d11e3ab3e0366ec2da806a510963217183f98874951131e1';v.parentNode.insertBefore(j,v)})(window,document,'script','//load.sumo.com/');</script>
+
+
+
+
+    <style>:root {--main-color: #00BAB2}</style>
+</head>
+<body class="checklist-page">
+<header class="">
+    <div class="wrapper">
+        <nav>
+            <div class="left">
+                <a href="/" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 39.2" width="144" height="39.2">
+                        <path class="cube" d="M56.4 16c-1.7-.9-3.2-1.4-4.8-1.4-1.3 0-2.1.5-2.1 1.4 0 2.5 9.3.4 9.3 7.1 0 3-2.7 5.5-7 5.5-1.9 0-4.3-.4-5.9-1.3 0 0-.1 0-.1-.1-.2-.2-.3-.5-.2-.7l1.1-2.5c.1-.3.5-.4.8-.3l.2.1c1.4.6 2.9.9 4.2.9 2 0 2.7-.5 2.7-1.6 0-2.8-9.3-.8-9.3-7.1 0-2.9 2.5-5.4 6.4-5.4 2 0 4.7.7 6.4 1.7l.2.1c.3.2.4.5.2.8l-1.1 2.5c-.1.3-.5.4-.8.3h-.2zm17.5-4.7h2.9c.3 0 .6.3.6.6v23.9c0 .3-.3.6-.6.6h-2.9c-.3 0-.6-.3-.6-.6v-8.4c-1.1.7-2.7 1.3-4.3 1.3-5 0-8.8-4-8.8-9s3.8-9 8.8-9c1.6 0 3.2.5 4.3 1.3v-.1c0-.3.3-.6.6-.6zm-.6 11.4v-6c-1.2-1.2-2.6-1.9-4.2-1.9-2.7 0-4.7 2.1-4.7 4.9s2 4.9 4.7 4.9c1.6.1 3-.5 4.2-1.9zm18-11.4c-.9-.4-1.9-.5-2.8-.5-1.6 0-3.2.5-4.5 1.3v-.2c0-.3-.2-.5-.5-.5h-3.2c-.3 0-.5.2-.5.5v16.4c0 .3.2.5.5.5h3.2c.3 0 .5-.2.5-.5V16.6c1-1.1 2.6-1.8 4.3-1.8.4 0 .9 0 1.4.1.3.1.6-.1.7-.3l1.2-2.7c0-.2-.1-.5-.3-.6zm15.2 15.6c-1.6 1-3.9 1.8-6.2 1.8-5.5 0-9.5-4-9.5-9.1 0-4.9 3.4-8.8 8.7-8.8 4.8 0 7.8 4.1 7.8 8.3 0 .4 0 .8-.1 1.2 0 .3-.3.5-.6.5H95c.5 2.6 2.6 4.2 5.3 4.2 1.5 0 3.2-.4 4.7-1.3.3-.1.6 0 .7.2l1.1 2.4c.1.2 0 .4-.1.5 0 0-.1.1-.2.1zm-11.3-9.3h7.9c-.2-1.7-1.7-3.1-3.6-3.1-2.4 0-3.8 1.4-4.3 3.1zm29.5 9.3c-1.6 1-3.9 1.8-6.2 1.8-5.5 0-9.5-4-9.5-9.1 0-4.9 3.4-8.8 8.7-8.8 4.8 0 7.8 4.1 7.8 8.3 0 .4 0 .8-.1 1.2 0 .3-.3.5-.6.5h-11.5c.5 2.6 2.5 4.2 5.3 4.2 1.5 0 3.2-.4 4.7-1.3.3-.1.6 0 .7.2l1.1 2.4c.1.2 0 .4-.2.5-.1 0-.1.1-.2.1zm-11.3-9.3h7.9c-.2-1.7-1.7-3.1-3.5-3.1-2.5 0-3.9 1.4-4.4 3.1zm13.9-5.7v16.2c0 .3.3.6.6.6h3c.3 0 .6-.3.6-.6V16.6c1-1.1 2.6-1.8 4.3-1.8 2.7 0 4.1 1.5 4.1 4.3v9c0 .3.3.6.6.6h2.9c.3 0 .6-.3.6-.6v-9.4c0-4.8-2.7-7.9-8.1-7.9-1.6 0-3.2.5-4.5 1.3V12c0-.3-.3-.6-.6-.6h-2.9c-.3-.1-.6.2-.6.5z" />
+                        <ellipse class="circle" cx="17.3" cy="19.6" rx="9.3" ry="9.3"/>
+                        <path class="letters" d="M16 35.7v-15L2.7 13.1v13.2l4.7-2.7c.3.8.8 1.6 1.3 2.3l-4.9 2.8 12.2 7zm2.6 0l12.2-7-4.9-2.8c.5-.7 1-1.5 1.3-2.3l4.7 2.7V13.1l-13.3 7.7v14.9zM3.7 10.6l13.6 7.9 13.6-7.9-12.3-7.1V9c-.4-.1-.9-.1-1.3-.1s-.9 0-1.3.1V3.5L3.7 10.6zM18.5.3l14.9 8.6c.7.4 1.2 1.2 1.2 2.1v17.2c0 .9-.5 1.6-1.2 2.1l-14.9 8.6c-.7.4-1.7.4-2.4 0L1.2 30.3C.5 29.8 0 29.1 0 28.2V11c0-.9.5-1.6 1.2-2.1L16.1.3c.7-.4 1.6-.4 2.4 0z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="right">
+                <div class="items">
+                    <div class="mobile-wrapper">
+
+                        <div class="dropdown-container">
+                            <a href="/product" class="item">Product</a>
+                            <ul class="dropdown">
+                                <li><a href="/product">Overview</a></li>
+                                <li><a href="/modules">Protection Modules</a></li>
+                                <li><a href="/runtime-application-self-protection">RASP</a></li>
+                                <li><a href="/in-app-web-application-firewall">In-App WAF</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown-container">
+                            <a class="item hideOnMobile">Solutions</a>
+                            <ul class="dropdown">
+                                <li><a href="/solutions/engineering-teams">For Engineering Teams</a></li>
+                                <li><a href="/solutions/security-teams">For Security Teams</a></li>
+                            </ul>
+                        </div>
+                        <a href="/runtime-application-self-protection" class="item showOnlyMobile">RASP</a>
+                        <a href="/in-app-web-application-firewall" class="item showOnlyMobile">In-App WAF</a>
+                        <a href="/modules" class="item showOnlyMobile">Protection Modules</a>
+                        <a href="/pricing" class="item">Pricing</a>
+                        <a href="/customers" class="item">Customers</a>
+                        <a href="https://docs.sqreen.com/" class="item showOnlyMobile">Docs</a>
+                        <div class="dropdown-container">
+                            <a href="/resources" class="item">Resources</a>
+                            <ul class="dropdown">
+                                <li><a href="/resources">Content Library</a></li>
+                                <li><a href="/web-application-security">Learning Center</a></li>
+                                <li><a href="https://blog.sqreen.com/">Blog</a></li>
+                                <li><a href="https://docs.sqreen.com/">Docs</a></li>
+                            </ul>
+                        </div>
+                        <a href="/demo" class="item highlighted">Demo</a>
+                        <span class="separator"></span>
+                        <a href="https://my.sqreen.com/login" class="item">Log in</a>
+                        <a href="https://my.sqreen.com/signup" class="new-button yellow">FREE TRIAL</a>
+
+                    </div>
+                </div>
+                <div class="burger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" width="38" height="38" alt="Open the menu on mobile">
+                        <path d="M28.3 13.8H9.7c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1h18.6c.6 0 1.1.5 1.1 1.1 0 .6-.5 1.1-1.1 1.1zm0 6H9.7c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1h18.6c.6 0 1.1.5 1.1 1.1 0 .6-.5 1.1-1.1 1.1zm0 6H9.7c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1h18.6c.6 0 1.1.5 1.1 1.1 0 .6-.5 1.1-1.1 1.1z"/>
+                    </svg>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+
+
+<section class="header checklist-header">
+    <h1>The Early Security Engineer’s First 90 Days Checklist</h1>
+    <p class="subtitle">Second Edition: Expanded and Updated. Being the first security engineer in a startup that already operates for a few months or even years can be quite daunting. This security checklist aims to help security engineers and CISOs in early-stage companies to prioritize their efforts in the first months of their new job. Have feedback? Let us know!</p>
+</section>
+<div class="cover" style="content: url('/assets/img/uploads/cover-small-first-security-engineer-checklist.png');"></div>
+<div class="back-cover"></div>
+
+<div class="completed-modal">
+    <div class="background"></div>
+    <div class="modal">
+        <button class="close-modal">
+            <img src="https://d33wubrfki0l68.cloudfront.net/39a4a5ee0d0ff0385bcd05d5715988e55dcd08fe/b7b85/assets/img/icons/icon-fullscreen.svg" alt="Close the modal">
+        </button>
+        <img class="pic" src="https://d33wubrfki0l68.cloudfront.net/d64db65ace7225a836a70d6be65505c9a28a66c3/40bca/assets/img/icons/tada.png" alt="Tada">
+        <h3>Great Job!</h3>
+        <p>Continue improving your security with Sqreen's monitoring and protection platform. It just takes a few minutes to get started.</p>
+        <a href="https://my.sqreen.com/signup" class="new-button violet">Try Sqreen now</a>
+    </div>
+</div>
+
+<section class="checklist-container">
+    <div class="wrapper">
+        <div class="left">
+            <div class="progression">
+                <span class="sub-text">your progress</span>
+                <div class="progress-text"><span class="progress-number">0%</span> complete</div>
+                <div class="progression-bar">
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <h4>Categories</h4>
+            <nav class="checklist-nav">
+                <ul>
+
+                    <li><a href="#application-security">Application security</a></li>
+
+                    <li><a href="#process">Process</a></li>
+
+                    <li><a href="#monitoring">Monitoring</a></li>
+
+                    <li><a href="#culture">Culture</a></li>
+
+                    <li><a href="#infrastructure-security">Infrastructure security</a></li>
+
+                </ul>
+            </nav>
+
+            <h5>Get the PDF version</h5>
+            <div class="pdf-form">
+                <script src="https://go.sqreen.com/js/forms2/js/forms2.min.js"></script>
+                <form id="mktoForm_1077"></form>
+            </div>
+
+            <div class="social">
+                <h3>Share on</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsecurity-engineer-checklist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="25">
+                                <path fill-rule="evenodd" d="M11.63 8.095H7.67V5.5c0-.974.646-1.2 1.1-1.2h2.797V.014L7.717 0C3.443 0 2.47 3.195 2.47 5.24v2.855H0v4.414h2.47V25h5.2V12.51h3.507l.454-4.415"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsecurity-engineer-checklist&text=Security+Engineer+Checklist&via=SqreenIO&related=SqreenIO">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 30 30">
+                                <path fill="#787878" d="M9.5 27.2C20.8 27.2 27 17.8 27 9.7v-.8c1.1-.8 2.2-1.9 3-3.2-1.1.5-2.3.8-3.5 1 1.3-.8 2.2-2 2.7-3.4-1.2.7-2.6 1.2-3.9 1.5-2.3-2.5-6.2-2.6-8.7-.3-1.6 1.5-2.3 3.8-1.8 5.9-5-.2-9.6-2.6-12.7-6.4-1.6 2.8-.8 6.4 1.9 8.2-1 0-1.9-.3-2.8-.8v.1c0 2.9 2.1 5.4 4.9 6-.9.2-1.9.3-2.8.1.8 2.5 3.1 4.2 5.7 4.3-2.2 1.7-4.9 2.6-7.6 2.6-.5 0-1 0-1.5-.1 2.9 1.9 6.2 2.8 9.6 2.8" class="st0"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsecurity-engineer-checklist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25">
+                                <path fill-rule="evenodd" d="M21.128 20.927h-3.764v-6.04c0-1.516-.544-2.552-1.907-2.552-1.04 0-1.66.698-1.932 1.373-.1.24-.123.578-.123.915v6.304H9.637s.05-10.23 0-11.288h3.765v1.596c.5-.77 1.395-1.864 3.393-1.864 2.476 0 4.333 1.614 4.333 5.082v6.472zM5.672 8.097h-.025c-1.263 0-2.08-.867-2.08-1.95 0-1.107.843-1.95 2.13-1.95 1.288 0 2.08.843 2.106 1.95 0 1.083-.818 1.95-2.13 1.95zM3.79 20.927h3.764V9.64H3.79v11.287zM23.08 0H1.84C.825 0 0 .802 0 1.79v21.42C0 24.196.824 25 1.84 25h21.24c1.018 0 1.843-.803 1.843-1.79V1.79c0-.988-.825-1.79-1.842-1.79z"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+
+            <div class="filter-bar">
+                <h3>Timeline</h3>
+                <ul class="stages-selector">
+
+                    <li class="first-week active">First week</li>
+
+                    <li class="first-month active">First month</li>
+
+                    <li class="first-quarter active">First quarter</li>
+
+                    <li class="later active">Later</li>
+
+                </ul>
+            </div>
+
+
+            <div class="checklist-content">
+
+                <div class="scrollspy" id="application-security">
+                    <h2>Application security</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Add a security policy to the website</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>When security researchers discover vulnerabilities in the web services of your company, they will need a way to report them properly to you. By adding a security policy, such as security.txt, to your website, you help them easily get in touch with you about any security issues they uncover. You should mention that you support <a href="https://en.wikipedia.org/wiki/Responsible_disclosure">responsible disclosure</a>, allowing you time to assess and fix the reported vulnerabilities.</p>
+
+                                <p>Not having a clear means to communicate security vulnerabilities will either mean that they won’t get reported, or that they will get lost in the shuffle of your company’s generic “contact us” inbox.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/resources/security-page">Open Source Security Page</a></li>
+                                    <li><a href="https://securitytxt.org">https://securitytxt.org</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Audit your applications</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Application security is increasingly one of the top security concerns for modern companies. On early audit you’ll need to do is on your applications. You’ll want to gather answers to questions like:
+                                    Are your applications using vulnerable or outdated dependencies?
+                                    Are they accessing the database?
+                                    Are they handling authentication?
+                                    Do they rely on a framework (Rails, Symfony) or are they using in-house components?</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/">Use Sqreen during your audit to find and remediate issues faster</a></li>
+                                    <li><a href="https://www.owasp.org/index.php/Web_Application_Security_Testing_Cheat_Sheet">Web Application Security Testing Cheat Sheet</a></li>
+                                    <li><a href="https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project">OWASP Top Ten Project</a></li>
+                                    <li><a href="https://www.isaca.org/Journal/archives/2012/Volume-3/Pages/Auditing-Applications-Part-1.aspx">Auditing Applications, Part 1 </a></li>
+                                    <li><a href="https://www.isaca.org/Journal/archives/2012/Volume-4/Pages/Auditing-Applications-Part-2.aspx">Auditing Applications, Part 2 </a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Audit your DNS settings</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>As more and more day-to-day business activities and revenue rely heavily on access and interactions with your website, it is important to audit your DNS as soon as possible and regularly afterward. Without proper security on your DNS, attackers could extract a list of all your assets or steal your domain names, which means they could lead efficient phishing attacks on your customers.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.computerworld.com.au/article/627665/eight-reasons-why-should-conduct-dns-audit/">Eight reasons why you should conduct a DNS audit</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Enforce two-factor authentication</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Everyone at your company should use 2-factor authentication. By adding 2FA, you add an extra layer of security. Should your coworker’s password get stolen, the attacker would still be locked out unless they have access to the second factor (e.g. phone app or text) as well. Phones are the most commonly used device for second factors, and thus have to be secured accordingly (e.g. with codes or biometry). Another option is to use purpose-built hardware-based 2FA, like Yubikeys.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://duo.com">Duo Security</a></li>
+                                    <li><a href="https://auth0.com">Auth0</a></li>
+                                    <li><a href="https://www.csoonline.com/article/3239144/password-security/what-is-two-factor-authentication-2fa-how-to-enable-it-and-why-you-should.html">What is two-factor authentication (2FA)?</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Ensure that your dependencies are secure</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Infuse security into all steps of the product development process and not just at the testing phase. Security-minded developers should check the dependencies in your applications for known bugs and vulnerabilities before using them and keep them updated when zero-days are found or patches are available.</p>
+
+                                <p><strong>Learn more:</strong></p>
+
+                                <ul>
+                                    <li><a href="https://techbeacon.com/13-tools-checking-security-risk-open-source-dependencies-0">13 tools for checking the security risk of open-source dependencies</a></li>
+                                    <li><a href="https://help.github.com/articles/about-security-alerts-for-vulnerable-dependencies/">Security alerts on Github</a></li>
+                                    <li><a href="https://www.sqreen.com/">Sqreen</a></li>
+                                    <li><a href="snyk.io">Snyk</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later-"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Help engineering and business teams protect sensitive business logics</p>
+                                    <span class="category">Later </span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>The attacks representing the most significant business risk for organizations are often attacks targeting sensitive business functions of applications rather than common vulnerabilities. Work with business and engineering teams to identify the biggest threats and implement monitoring and protection solutions to automatically remediate these threats.</p>
+
+                                <p><strong>Learn more:</strong>
+                                    <a href="https://docs.sqreen.com/security-automation/introduction/">Use security playbooks to protect your business logic</a></p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Make sure everything is properly encrypted</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>When it comes to cryptography, don’t roll your own. Use accepted standards instead. Encrypt everything, including computers and mobile devices handed out to employees during the onboarding process. Turn on encryption for onsite and cloud backups. Use HTTPS to protect the users of your applications.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://letsencrypt.org">Let’s Encrypt</a></li>
+                                    <li><a href="https://support.microsoft.com/en-us/help/4028713/windows-10-turn-on-device-encryption">Microsoft encryption</a></li>
+                                    <li><a href="https://support.apple.com/en-us/HT204837">MacOs encryption</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Perform a security review of your architecture</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Review the elements of your architecture and the interfaces between them. Using the list of assets you were given or compiled earlier, you should be able to map the elements, draw the interconnections and identify flaws in communication protocols, servers configurations, and databases choices.</p>
+
+                                <p>If you use <a href="https://www.sqreen.com/">Sqreen</a>, you can also leverage the security flow map to get a real-time view of your applications and their security status.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://resources.infosecinstitute.com/application-architecture-review/">Application Architecture Review</a></li>
+                                    <li><a href="https://www.sqreen.com/resources/aws-security">AWS security best practices</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Protect your applications in production</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Doing as much as you can to catch security vulnerabilities pre-production is helpful, but without the full context of runtime, you won’t be able to catch everything. Protecting and monitoring your applications in production, in real time, can greatly improve your security posture. Tools like RASPs and ASM platforms can give you visibility into the security of your production applications and help you stay on top of what’s going on.</p>
+
+                                <p><strong>Learn more:</strong>
+                                    <a href="sqreen.com">Sqreen</a></p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Retrieve and audit your backups or set up new backups</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>In today’s business world, company data is the most precious asset and backups are therefore crucial. Check the integrity of previous backups and make sure the settings are correct for future backups with sufficient storage space and backup frequency. If there are no backups, set them up immediately.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Secure your emails with DMARC</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Emails are usually a weak spot for attacks, especially via phishing and spoofing. A single email can do serious damage if it hits the wrong person at the wrong time. You can implement DMARC (Domain-based Message Authentication, Reporting and Conformance) to help protect your users from fraudulent emails. DMARC can be the technical support element to the security training you should be holding to help your co-workers spot and avoid dangerous emails.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://dmarc.org">DMARC</a></li>
+                                    <li><a href="https://www.esecurityplanet.com/applications/how-to-set-up-implement-dmarc-email-security.html">How to Set Up and Implement DMARC Email Security</a></li>
+                                    <li><a href="https://blog.returnpath.com/build-your-dmarc-record-in-15-minutes-v2/">Build Your DMARC Record in 15 Minutes</a></li>
+                                    <li><a href="https://ondmarc.com">OnDMARC</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Structure secrets management</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Secrets, such as private keys, are extremely sensitive data and must not be stored unprotected. They should be securely stored in a vault. Some vaults can manage certificates as well.
+                                    Secrets committed in an application’s source code should also be tracked down and stored elsewhere.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.vaultproject.io">Vault Project</a></li>
+                                    <li><a href="https://aws.amazon.com/cloudhsm/">AWS CloudHSM</a></li>
+                                    <li><a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Key_Management_Cheat_Sheet.md">OWASP key management cheat sheet</a></li>
+                                    <li><a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-managing-secrets-safely-with-version-control-systems">An Introduction to Managing Secrets Safely with Version Control Systems</a></li>
+                                    <li>[TruffleHog] https://github.com/dxa4481/truffleHog</li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Think about centralized authentication</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>The benefits of centralized authentication for users is having a single set of credentials for all their applications. From a security standpoint, it enables you to handle only one account and gets rid of the risk of forgetting to disable an account during offboarding. It also saves time during onboarding by getting rid of the need to create lots of accounts for new employees.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.threatstack.com/blog/five-lessons-we-learned-on-our-way-to-centralized-authentication">Five Lessons We Learned on Our Way to Centralized Authentication</a></li>
+                                    <li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-centralized-linux-authentication-with-freeipa-on-centos-7">Centralized Linux Authentication</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="scrollspy" id="process">
+                    <h2>Process</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["first-week"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Ask questions and take notes during onboarding</p>
+                                    <span class="category">First week</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Regardless of the maturity of the onboarding process at your company, whether formal or informal, seize the opportunity to ask questions and take extensive notes. These will be useful as you get settled into your role. Pay extra attention to anything security-related during onboarding. You can compile your observations in a discovery report for an early win.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Automate security as much as possible in the CI pipeline</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>If your security practices impact your development velocity, they will be looked at as more of a burden than a value. The best practices today are to take lessons from DevOps and find ways to bring security closer to developers. Leverage tools that can automate security checks and monitoring. Implementing automated SAST/DAST tools, vulnerability dependency scanning, and others will help you catch the obvious flaws before they get into production. Just beware that you’ll have to sift through false positives and that these tools will not be able to identify flaws in your business logic or once your tools are in production.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://blog.sqreen.com/sast-dast-rasp/">SAST vs. DAST vs. RASP</a></li>
+                                    <li><a href="https://learn.techbeacon.com/units/sast-dast-iast-rasp-pros-cons-how-choose">SAST, DAST, IAST, and RASP: Pros, cons and how to choose</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Automation is key</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>With the amount of tasks required as the first security engineer, you can easily drown under less important tasks, resulting in losing track of serious unresolved vulnerabilities and substantially diminishing your incident response capabilities. Automate as much as possible in order to free up valuable time for tasks that actually require human expertise and deeper analyses. Take advantage of the multiple solutions offered in the market and of computational analytical power.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/">Sqreen</a></li>
+                                    <li><a href="https://www.csoonline.com/article/3193035/security/security-automation-is-maturing-but-many-firms-not-ready-for-adoption.html">Security automation is maturing, but many firms not ready for adoption</a></li>
+                                    <li><a href="https://www.cbronline.com/cybersecurity/automation-key-future-cyber-security/">Why automation is key for the future of cyber security</a></li>
+                                    <li>8 Ways Security Automation and Orchestration Is Transforming Security Operations(https://www.esecurityplanet.com/network-security/security-automation-and-orchestration-soar.html)</li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Be the point of contact to perform security reviews of architecture</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Be available to your engineering team for security reviews of the architecture and update the architecture documentation regularly. You want your engineering team to come to you and work closely with you on the entire gamut of security needs, so be as present and helpful as possible.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project">OWASP Application Security Verification Standard Project</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Build a process to manage third-party services</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Third-party providers and agencies need to be managed from onboarding to offboarding. This entails a thorough due diligence before and during the relationship as well as frequent risk assessments to keep abreast of the level of access the provider has and the potential vulnerabilities involved. The contract termination step is often overlooked and should be well prepared for during contract drafting, notably in terms of data migration and access removal. A checklist of all the tasks to be performed during onboarding and offboarding should be set up and regularly updated.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.eci.com/blog/15793-five-steps-to-effectively-managing-third-party-service-provider-risk.html">Five Steps to Effectively Managing Third-Party Service Provider Risk</a></li>
+                                    <li><a href="https://www.metricstream.com/insights/best-practices-third-party-mgmt-program.htm">9 Best Practices to Jumpstart your Third-Party Management Program</a></li>
+                                    <li><a href="https://github.com/google/vsaq">Vendor Security Assessment Questionnaire</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Create a flag for security-related tasks</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>If your company has an issue tracking system (such as JIRA), make sure that security-related issues can be identified easily or work with the team managing the system to create a special flag or project. Communicate this new category to your co-workers and clarify how and when to use it. You can also use a dedicated vulnerability management system such as ThreadFix which can be integrated with JIRA.</p>
+
+                                <p>This will make addressing and prioritizing security issues much easier for you.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://github.com/denimgroup/threadfix">ThreadFix Vulnerability Resolution</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Create a security incident response plan</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Define what constitutes a security incident and design the response plan outlining the necessary tasks and roles. Share the response plan widely and make sure the employees are aware of their roles through regular training and simulation exercises. You don’t want to be in the position of needing to wing it during the crucial time after a breach or major incident.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://github.com/meirwah/awesome-incident-response">Awesome Incident Response</a></li>
+                                    <li><a href="https://www.csoonline.com/article/3203705/security/10-steps-for-a-successful-incident-response-plan.html">10 steps for a successful incident response plan</a></li>
+                                    <li><a href="https://www.securitymetrics.com/blog/6-phases-incident-response-plan">6 Phases In The Incident Response Plan</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-week"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Determine who was informally in charge of security before you joined</p>
+                                    <span class="category">First week</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Even though it may not have been somebody’s specific role, someone was handling security aspects for the company before you started. Take the time to meet early on with the “security champion,” not only to gather precious information about the current state of things, but also to agree on his/her scope onwards should the person want to stay involved in security tasks. Depending on the company, this person might be the CTO or a security-minded developer.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Enforce a process for security code reviews</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Work with your developers to set up a process and a checklist for security code reviews in order to empower them to run manual and automated security code reviews themselves. Be available to answer their questions and be ready to assist if needed.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://security.openstack.org/vmt-process.html">Vulnerability Management Process</a></li>
+                                    <li><a href="https://www.owasp.org/index.php/OWASP_Code_Review_Guide_Table_of_Contents">OWASP Code Review Guide</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Enforce the usage of password managers with strong password policies</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>With a password manager, your users will only need to remember one master password. All other passwords can be complex and long; the password manager will take care of storing them and retrieving them when needed. The password manager can also generate random strong passwords to be used.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.techrepublic.com/article/password-managers-a-cheat-sheet-for-professionals/">Password managers: A cheat sheet for professionals</a></li>
+                                    <li><a href="https://www.dashlane.com/">Dashlane</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Ensure you are looped in on the SDLC</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>You should add some checkpoints to the SDLC so the developer teams will think of the security team when they’re creating and updating applications. Some tools or checklists allow for asking developers a small set of questions when starting a project in order to let the security team know how much attention they should pay here. For instance, “is this service gonna be exposed on the Internet”, or “Is this service handling customer data” are questions that can help you quickly get a sense of how involved you need to be on any particular project.</p>
+
+                                <p><strong>Learn more:</strong>
+                                    <a href="https://github.com/slackhq/goSDL">GoSDL</a></p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Explore and address the security backlog (if there is one)</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Oftentimes, even if vulnerabilities have been reported (in JIRA for example), they have not been addressed prior to your arrival because people did not know they had to address them, did not realize that they needed to be fixed immediately, or did not have or allocate the resources to assess and fix the issues. Getting a handle on the backlog of reported security issues and prioritizing fixes is a good place to start after you understand the systems your company has in place.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://techbeacon.com/7-common-security-bug-management-mistakes-how-avoid-them">7 common security bug management mistakes and how to avoid them</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Fix the most urgent issues</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Do not be alarmed or overwhelmed by the number of vulnerabilities uncovered during your audits. All of them do not need to be fixed right away; you can draw up a plan to fix them over time. However, do not defer fixing the most critical issues. If you identify a serious vulnerability during one of the audits and security reviews, you should pause and fix the issue immediately. If you can’t fix it, mitigate it.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Implement and maintain company security policies and procedures</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Draft security policies and procedures for the company, and, more importantly, communicate and circulate them. Make sure they are easily accessible and make them understandable for your co-workers. Set up a process to review and update them regularly at a certain frequency or when a specific event occurs.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.csoonline.com/article/3263738/9-policies-and-procedures-you-need-to-know-about-if-youre-starting-a-new-security-program.html">9 policies and procedures you need to know about if you’re starting a new security program</a></li>
+                                    <li><a href="https://hbr.org/2017/11/the-key-to-better-cybersecurity-keep-employee-rules-simple">The Key to Better Cybersecurity: Keep Employee Rules Simple</a></li>
+                                    <li><a href="http://blog.cybertraining365.com/2017/09/19/drafting-cyber-security-policy-company/">Drafting Cyber Security Policy for your Company</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Include security in the onboarding/offboarding process for employees</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Onboarding and offboarding are important security moments for your company. You’ll want to ensure that new employees enact the security measures needed and that your company follows the appropriate steps for employees who are leaving.</p>
+
+                                <p>Your onboarding checklist should contain a list of all the steps you and they need to follow when an employee, contractor, or intern joins your company. A similar list can also be used when someone is leaving. Ensure that you deprovision all accounts they had access to during the offboarding.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://github.com/92bondstreet/awesome-onboarding">Awesome onboarding</a></li>
+                                    <li><a href="https://www.rippling.com">Rippling</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>List and prioritize your security issues</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Compile all the issues you uncovered during the general and specific security audits, then prioritize them by risk. Setting up a vulnerability management system will be helpful.
+                                    If no security issues are in the backlog… there is probably a cultural flag here!</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.csoonline.com/article/3211443/security/vulnerability-vs-risk-knowing-the-difference-improves-security.html">Vulnerability vs. risk</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Prepare the groundwork for external security tests</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Before embarking on independent security assessments and penetration tests, it is good practice to run checks and correct some commonly identified issues (such as missing patches, weak or default passwords used, unsupported operating systems or missing input/output data validation) in order to use the external auditors time and expertise on more subtle issues.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.sagedatasecurity.com/blog/10-tips-to-reduce-common-vulnerabilities-exploited-by-cybercriminals">10 Tips to Reduce Common Vulnerabilities Exploited by Cybercriminals</a></li>
+                                    <li><a href="https://blog.sqreen.com/leverage-pentest/">How to Fully Leverage your Pentest</a></li>
+                                    <li><a href="https://www.csoonline.com/article/2944967/network-security/10-steps-to-managing-a-successful-network-penetration-test.html">10 steps to managing a successful network penetration test</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Set up and facilitate a public bug bounty program</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>A bug bounty program will allow external hackers to report vulnerabilities. Most of the bug bounties programs allow you to offer rewards for bugs found. A lot of the reports won’t be valuable and you need security-aware people inside your development teams to evaluate the bugs you receive. These programs are good additions to other security initiatives as it incentivizes people outside your company to share bugs you may have overlooked.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.tripwire.com/state-of-security/vulnerability-management/launching-an-efficient-and-cost-effective-bug-bounty-program/">Launching an Efficient and Cost-Effective Bug Bounty Program</a></li>
+                                    <li><a href="https://www.hackerone.com">Hackerone</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Structure and be the technical resource for your sales team and customers</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>As a security engineer, you might also be the go-to resource for sales teams that require help filling in security forms. Spend some time retrieving and structuring all the previous requests to save time for future questionnaires.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://cloudsecurityalliance.org/">CSA - Cloud Security Alliance</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-week"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Take time to learn the specifics of your new company</p>
+                                    <span class="category">First week</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Don’t just take your previous experiences at past companies as the go-to model for your new company. While some things will be the same, several aspects will undoubtedly be different, and doing exactly what you’ve done before won’t be as effective. If you’re coming from a more mature company, it’s easy to suffocate an agile startup with heavy security that does not scale well, for example. Security engineers operate inside a business, and understanding that business before enforcing GovAgency-like security measures is key.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-week"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Understand how product development happens in your company</p>
+                                    <span class="category">First week</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>As part of your first week exploration, you need to gather enough information from key stakeholders in order to have a clear understanding of the product development processes (e.g. steps, key milestones, teams involved, governance structure, etc.). These might be catalogued in documentation or through detailed oral explanations that should be written down. Deeply understanding the product development processes and structure of the engineering organization in your company will serve as a basis when you start to introduce security awareness and tasks within the product development lifecycle.</p>
+
+                                <p><strong>Learn more</strong>
+                                    <a href="https://medium.com/productmanagement101/spotify-squad-framework-part-i-8f74bcfcd761">Spotify squads</a>
+                                    <a href="https://www.pagerduty.com/blog/scaling-engineering-org/">Scaling the engineering org at PagerDuty</a></p>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="scrollspy" id="monitoring">
+                    <h2>Monitoring</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Assess the completeness and accuracy of your company’s assets list</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>As a first step, assess the availability and freshness of your assets information. Is there a list of the hardware? Is there a list of the applications and services used within your company? Is there an employee directory and a list of all user accounts? Is there a list of third-party providers and their contracts? When were these lists last updated?</p>
+
+                                <p>The employee directory might be the easiest to retrieve, as your people department should be able to provide up-to-date records with the dates of everyone joining and leaving the company. As for the other lists, you will probably have to build them or update them if they already exist.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Audit your SaaS providers</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Know your SaaS services! Security is a major concern when it comes to SaaS. Examine the settings and SLAs of your SaaS services, whether application, platform, or infrastructure, and compare with what was agreed to in the contracts. Take note of the flaws in the contracts to renegotiate them if needed. SaaS providers might be reluctant to be audited beyond providing documentation of their policies and procedures. Prioritize the audits requests based on the service criticality or the data sensitivity. Ensure they comply with privacy related legislation such as GDPR.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://blog.sqreen.com/top-1000-saas-security/">Audit of the top 1000 SaaS providers</a></li>
+                                    <li><a href="https://www.cso.com.au/article/610838/assessing-saas-security-top-down-approach/">Assessing SaaS security: A top down approach</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Build a security dashboard</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Create a security dashboard to give you an overview of the security efforts, or implement a tool that will do it for you. Avoid manual reporting – all data should be automatically provided by the solutions you use.</p>
+
+                                <ul>
+                                    <li><a href="https://www.tripwire.com/state-of-security/risk-based-security-for-executives/connecting-security-to-the-business/the-top-10-tips-for-building-an-effective-security-dashboard/">The Top 10 Tips for Building an Effective Security Dashboard</a></li>
+                                    <li><a href="sqreen.com">Sqreen</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Evaluate your third-party providers</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Now that you have a list of your third-party providers, and a process in place for evaluating them, you should conduct thorough assessments of your existing third-party providers to make sure they are secure. Renegotiate contracts to strengthen the security responsibilities of your providers and the service levels required.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/opendoor/saas">Security of SaaS Companies</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Perform deeper vulnerability testing, risk analysis and security assessments</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Once you have a baseline audit of your company’s security across the major areas, you should schedule deeper tests and assessments in all areas (infrastructure, applications, people). These will give you a complete picture and the baseline you need to make strategic security decisions.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Perform your first security audit</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Design and perform your first security audit to understand the most critical security vulnerabilities within your company. This first audit should be broad in scope but not too detailed as other more thorough audits will be performed later for specific areas. Breadth over depth here will give you a high level understanding of where the burning platforms are and what areas need your attention first.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://blog.dashlane.com/conduct-internal-security-audit/">How to Conduct an Internal Security Audit in Five Simple, Inexpensive Steps</a></li>
+                                    <li><a href="https://www.csoonline.com/article/3247304/security/prioritizing-your-security-where-do-you-begin.html">Prioritizing Your Security – Where Do You Begin?</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Protect against Denial of Service attacks</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>DoS and DDoS attacks can be devastating for a business’ bottom line. Depending on your business, disruption to the availability of your service could make you lose out on revenue or impact your customers. Taking actions to protect your systems and mitigate the effects of these types of attacks is key.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://aws.amazon.com/shield/ddos-attack-protection/">AWS Shield</a></li>
+                                    <li><a href="https://www.csoonline.com/article/2133613/network-security/malware-cybercrime-ddos-protection-mitigation-and-defense-7-essential-tips.html">DDoS protection, mitigation and defense: 7 essential tips</a></li>
+                                    <li><a href="https://www.techradar.com/news/best-ddos-protection">Best DDoS protection of 2019</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Set up a centralized logging platform</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Logs are a valuable asset for getting signals from your production environment and for investigating suspicious activity or a security breach. A centralized log platform helps you to make the most out of the analytics potential held in your logs and provides a view across all themes (applications, network, users, etc.)</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.owasp.org/index.php/Logging_Cheat_Sheet">Logging Cheat Sheet</a></li>
+                                    <li><a href="https://hackernoon.com/choosing-the-best-log-management-tool-for-your-system-81399b5c27ad">Choosing the Best Log Management Tool for Your System</a></li>
+                                    <li><a href="https://aws.amazon.com/answers/logging/centralized-logging/">Centralized Logging on AWS</a></li>
+                                    <li><a href="https://www.loggly.com/blog/30-best-practices-logging-scale/">30 best practices for logging at scale</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Update or build the list of applications</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>If you have been handed a list of the applications in use within your company, make sure it is up-to-date. If not, take time immediately to update the information about the major applications first, and schedule some time a bit later to update the rest of the list comprehensively as soon as possible.</p>
+
+                                <p>If there is no application list, you should prioritize building it.</p>
+
+                                <p>Ask which employees have (or had previously) admin rights to install software themselves on their computer and identify the shadow IT within your company.</p>
+
+                                <p><strong>Learn more:</strong>
+                                    <a href="https://www.sqreen.com/solutions/security-teams">Sqreen’s security flow map</a></p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Update or build the list of devices</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>If you have been handed a list of the devices, make sure it is up-to-date or take time to update the exposed machine’s information first and schedule to update the list thoroughly as soon as possible.</p>
+
+                                <p>If the company has a BYOD policy, list those devices as well with the identification of each employee. If there is no device list, you should build it.</p>
+
+                                <p>The list should at least include information such as IP, type of device, and physical location, if appropriate.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://securityintelligence.com/11-mobile-device-management-best-practices-you-already-know/">Mobile Device Management Best Practices</a></li>
+                                    <li><a href="https://med.stanford.edu/irt/security/protecting/laptops.html">Securing Laptops and Mobile Devices</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-month"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Update or build the list of services exposed to the Internet</p>
+                                    <span class="category">First month</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>If you have been handed a list of the exposed services, make sure it is up-to-date or take time to update the exposed machine’s information first and schedule to update the list thoroughly as soon as possible. One good way to create this list is to use cloud API (AWS to list Route 53 domain names, or EC2 instances).</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/checklists/saas-cto-security-checklist">SaaS CTO Security Checklist</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Update or build the list of third-party providers</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>You will need to know every company or individual that has direct or indirect access to the company’s systems or sensitive data. List or update the list of third-party providers and the contracts data. One critical piece of information is the date of contract renewal or termination and the data they have access to. You will also need to know how the provider’s teams access the systems and which rights are assigned to them.</p>
+
+                                <p>Having a clear understanding of the ways third party providers can and do access your systems and data is central to building the appropriate security measures on this front.</p>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="scrollspy" id="culture">
+                    <h2>Culture</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["first-week"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Be humble and respectful - Kill the shame game!</p>
+                                    <span class="category">First week</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>As a general rule of thumb, adopting a humble and respectful demeanor is a factor of success for every newcomer within an organization. It’s tempting to show off how much you know about security and cyber-splain to everyone how insecure their setup is, if only out of a desire to establish your authority and credentials. But this will backfire on you. Being too hasty and judgmental in pointing out the shortcomings in the company’s security will not earn you the respect of your new colleagues, rather it will drive them away. Take comfort in the fact that if the company deemed there were no issues, you would not have been hired!</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-week"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Build relationships with key stakeholders</p>
+                                    <span class="category">First week</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>If it was not included in your onboarding documentation, ask for a list of the key stakeholders in your organization, be they developers, ops, execs, or managers. Your manager might see the importance of accompanying you to introduce you. Arrange together to meet with them and discuss their understanding of security, your role, and their concerns.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Don’t create a security awareness program (they don’t work) but…</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>… enable and infuse a security culture</p>
+
+                                <p>Don’t make security a one-day annual training everyone has to go through and then forgets about. Permanent and contract employees need to be aware at all times of security threats, beginning with how they set and handle their passwords, use their emails, and secure their laptops and external drives.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.darkreading.com/endpoint/the-fundamental-flaw-in-security-awareness-programs/a/d-id/1332301">The Fundamental Flaw in Security Awareness Programs</a></li>
+                                    <li><a href="https://www.csoonline.com/article/2133408/data-protection/network-security-the-7-elements-of-a-successful-security-awareness-program.html">7 elements of a successful security awareness program</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Hold security trainings for engineers and non-engineers</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Liaise with your people team or your CTO to set up a targeted security training for all employees, whether they’re engineers or not. The training should not be just a list of instructions, but rather a clear explanation as to why certain rules have to be put in place. You can include technical details if necessary, but make them accessible for all skill levels. The training should be included in the onboarding process.</p>
+
+                                <p>Getting buy-in on the security policies you’re implementing will make them much more effective, and a good, empathetic training will help you do that.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://sudo.pagerduty.com">Good security trainings</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["first-quarter"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Meet with fellow security engineers from similar companies</p>
+                                    <span class="category">First quarter</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>The security community is generally a friendly one, and you can learn a lot from other security-minded professionals. As such, if you are not already a member of a professional group in your area, look for security meetups and communities, both online and offline. You could also reach out directly to fellow security engineers, whether in the same business line as you or not, to exchange ideas about your jobs and responsibilities or to discuss how they navigated being one of the first security engineers in their organization, if they were.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.meetup.com/topics/appsec/">AppSec meetups</a>
+                                        -<a href="https://www.linkedin.com/groups/38412/profile">Information Security Community (LinkedIn group)</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Never stop learning!</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Managing security is an ever-changing landscape, so you need to keep yourself updated on the practices, tools, zero-day vulnerabilities, patches etc. It can seem overwhelming, but there are many websites and newsletters in which you can get regular information.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="blog.sqreen.com">Sqreen blog</a></li>
+                                    <li><a href="https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project">OWASP Top Ten Project</a></li>
+                                    <li><a href="https://appsecusa.org/">AppSec USA</a></li>
+                                    <li><a href="http://podcast.wh1t3rabbit.net">Down the Security Rabbithole</a>
+                                        -<a href="https://inside.com/security">Inside security</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="scrollspy" id="infrastructure-security">
+                    <h2>Infrastructure security</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Protect your infrastructure from intrusions</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Make sure to follow the latest security releases and update your infrastructure as soon as they become available. Having servers without public IP addresses (e.g. in a VPC) and rate limiting authentication services are some of the measures that can be implemented to protect your servers, and consequently your applications.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/demo">Sqreen</a></li>
+                                    <li><a href="https://www.threatstack.com/">ThreatStack</a></li>
+                                    <li><a href="https://www.digitalocean.com/community/tutorials/7-security-measures-to-protect-your-servers">7 Security Measures to Protect Your Servers</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["later"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #00BAB2">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#00BAB2" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Start thinking about physical security and hardware protection</p>
+                                    <span class="category">Later</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#00BAB2" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Attackers can do a lot of damage very quickly if they get physical access to your company’s or employees’ hardware. Assess the risks for your company’s hardware and implement some best practices around physical security protection.</p>
+
+                                <p><strong>Learn more:</strong></p>
+                                <ul>
+                                    <li><a href="https://www.linkedin.com/pulse/7-physical-security-practices-every-business-should-delia-mppa/">7 physical security practices every business should implement</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="sharing-block">
+                <h4>Did you like this resource?</h4>
+                <span class="subtitle">Spread the word about improving security best practices.</span>
+                <ul class="socials">
+                    <li>
+                        <a id="HA-share-on-tw" class="tw" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsecurity-engineer-checklist&text=Security+Engineer+Checklist&via=SqreenIO&related=SqreenIO">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 30 30">
+                                <path fill="#787878" d="M9.5 27.2C20.8 27.2 27 17.8 27 9.7v-.8c1.1-.8 2.2-1.9 3-3.2-1.1.5-2.3.8-3.5 1 1.3-.8 2.2-2 2.7-3.4-1.2.7-2.6 1.2-3.9 1.5-2.3-2.5-6.2-2.6-8.7-.3-1.6 1.5-2.3 3.8-1.8 5.9-5-.2-9.6-2.6-12.7-6.4-1.6 2.8-.8 6.4 1.9 8.2-1 0-1.9-.3-2.8-.8v.1c0 2.9 2.1 5.4 4.9 6-.9.2-1.9.3-2.8.1.8 2.5 3.1 4.2 5.7 4.3-2.2 1.7-4.9 2.6-7.6 2.6-.5 0-1 0-1.5-.1 2.9 1.9 6.2 2.8 9.6 2.8" class="st0"/>
+                            </svg>
+                            <span>Tweet</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="HA-share-on-fb" class="fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsecurity-engineer-checklist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="25" viewBox="0 0 12 25">
+                                <path fill-rule="evenodd" d="M11.63 8.095H7.67V5.5c0-.974.646-1.2 1.1-1.2h2.797V.014L7.717 0C3.443 0 2.47 3.195 2.47 5.24v2.855H0v4.414h2.47V25h5.2V12.51h3.507l.454-4.415"/>
+                            </svg>
+                            <span>Share</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="HA-share-on-lk" class="lk" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsecurity-engineer-checklist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                <path fill-rule="evenodd" d="M21.128 20.927h-3.764v-6.04c0-1.516-.544-2.552-1.907-2.552-1.04 0-1.66.698-1.932 1.373-.1.24-.123.578-.123.915v6.304H9.637s.05-10.23 0-11.288h3.765v1.596c.5-.77 1.395-1.864 3.393-1.864 2.476 0 4.333 1.614 4.333 5.082v6.472zM5.672 8.097h-.025c-1.263 0-2.08-.867-2.08-1.95 0-1.107.843-1.95 2.13-1.95 1.288 0 2.08.843 2.106 1.95 0 1.083-.818 1.95-2.13 1.95zM3.79 20.927h3.764V9.64H3.79v11.287zM23.08 0H1.84C.825 0 0 .802 0 1.79v21.42C0 24.196.824 25 1.84 25h21.24c1.018 0 1.843-.803 1.843-1.79V1.79c0-.988-.825-1.79-1.842-1.79z"/>
+                            </svg>
+                            <span>Share</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="product-page">
+    <img src="https://d33wubrfki0l68.cloudfront.net/581c362c98647a1f60b0836031af8c398e14e2d8/37d35/assets/img/logos/sqreen-logo-bw-white.svg" alt="Sqreen logo" class="pp-logo">
+    <svg class="pp-shield" viewBox="0 0 120 171" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient x1="23.8744521%" y1="1.45692568%" x2="77.7628891%" y2="90.5897815%" id="a">
+                <stop class="bright-color" offset="0%"/>
+                <stop stop-color="#00BAB2" offset="100%" />
+            </linearGradient>
+        </defs>
+        <path d="M448.3713-30.4794913c17.424 0 33.2046-6.9726928 49.6287-18.2594959V95.5159s-14.355 51.321357-99 74.654558C314.355 146.837257 300 95.5159 300 95.5159V-48.7389872c16.4142 11.2868031 32.2047 18.2594959 49.6188 18.2594959 19.9089 0 37.6596-9.105402 49.2921-23.3332012h.1683c11.6325 14.2277992 29.3832 23.3332012 49.2921 23.3332012zm-103.899032 74.063798l5.174524 5.3475652 5.174523-5.3475652 25.563327-26.41819 5.06799-5.2374683-10.349048-10.25927614-5.06799 5.23746829-20.391616 21.06771715-5.047993-5.2168032-5.06799-5.2374683-10.349048 10.2592762 5.06799 5.2374683 10.225331 10.567276zm0 51.3722821l5.174524 5.3475652 5.174523-5.3475652 25.563327-26.4181899 5.06799-5.2374683-10.349048-10.2592762-5.06799 5.2374683-20.311593 21.1504162-5.128016-5.2995022-5.06799-5.2374683-10.349048 10.2592762 5.06799 5.2374682 10.225331 10.567276zm111.049397-60.4089559h7.046756V20.1633938h-70.863158v14.3842391h63.816402zm0 55.4820647h7.046756v-14.384239h-70.863158v14.384239h63.816402z" transform="translate(-300)" fill="url(#a)" fill-rule="evenodd"/>
+    </svg>
+    <div class="pp-title">Trusted by security teams, loved by developers.</div>
+    <p>Monitoring and protection platform made to be incredibly powerful yet very easy to use.</p>
+    <ul class="pp-three-points">
+        <li>
+            <div class="pp-picture">
+                <img src="https://d33wubrfki0l68.cloudfront.net/7ef9ee42033a9102278f53725f2c67ae85e2731c/d977c/assets/img/icons/icon-radar.svg" alt="">
+            </div>
+            <p><strong>Unmatched security insights:</strong> Access to more detailed security analytics than ever, including applevel incidents you can act on immediately.</p>
+        </li>
+        <li>
+            <div class="pp-picture">
+                <img src="https://d33wubrfki0l68.cloudfront.net/f2cd2f557f5f9df3053e46278153c57925e36b2e/d00b3/assets/img/icons/shield-dashed.svg" alt="">
+            </div>
+            <p><strong>Instant Protection:</strong> Out-of-the-box modules protect apps against a broad array of threats. Setup takes minutes, no config required.</p>
+        </li>
+        <li>
+            <div class="pp-picture">
+                <img src="https://d33wubrfki0l68.cloudfront.net/78db30d2378d66e773d7b7d413c01c296a042bdd/55bb3/assets/img/icons/icon-brick.svg" alt="">
+            </div>
+            <p><strong>Easily meet enterprise compliance needs:</strong> Get access to the best controls without hiring expensive security teams or consultants.</p>
+        </li>
+    </ul>
+    <div class="pp-footer">
+        <p>Start your free trial at <a href="https://www.sqreen.com">sqreen.com</a></p>
+    </div>
+</div>
+<div class="last-page">
+    <div id="qrcode"></div>
+    <div>
+        <p>Want this handbook as a PDF?</p>
+        <p>Scan the QR-code, or go to:</p>
+        <p>https://www.sqreen.com/checklists/security-engineer-checklist</p>
+    </div>
+</div>
+
+<section class="newsletter">
+    <div class="wrapper">
+        <div class="left">
+            <img src="https://d33wubrfki0l68.cloudfront.net/a62fdc8b30e1ea75724fdbe56d53e810ff89c5a5/16b32/assets/img/illustrations/paper-plane-illu.svg" alt="Paper plan illustration">
+        </div>
+        <div class="right">
+            <h3>Stay in touch!</h3>
+            <p>We're publishing great new resources every week.<br>Get them straight to your inbox.</p>
+            <script src="https://go.sqreen.com/js/forms2/js/forms2.min.js"></script>
+            <form class="newsletter-form" id="mktoForm_1047"></form>
+        </div>
+    </div>
+</section>
+
+<script>
+    MktoForms2.loadForm("https://go.sqreen.com", "544-MID-880", 1047);
+    MktoForms2.whenReady(function (form) {
+        form.onSubmit(function(){
+            heap.addUserProperties({email: form.vals().Email});
+        });
+    });
+</script>
+
+<footer>
+
+    <div class="ready">
+        <div class="wrapper">
+            <div>
+                <h4>Ready to protect your app?</h4>
+                <div class="subtitle">Get started for free · 5 min installation · No credit card required.</div>
+            </div>
+            <div>
+                <a href="https://my.sqreen.com/signup" class="button is-inline-block is-bold is-white is-big">FREE TRIAL</a>
+                <span class="or">OR</span>
+                <a href="https://www.sqreen.com/demo" class="button is-inline-block link white">Schedule a demo</a>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="wrapper">
+            <ul>
+                <li>
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/product">Product</a></li>
+                        <li><a href="/modules">Modules Hub</a></li>
+                        <li><a href="/pricing">Pricing</a></li>
+                        <li><a href="/customers">Customers</a></li>
+                        <li><a href="https://www.sqreen.com/demo">Schedule a demo</a></li>
+                        <li><a href="/solutions/engineering-teams">For Engineering Teams</a></li>
+                        <li><a href="/solutions/security-teams">For Security Teams</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/company">About</a></li>
+                        <li><a href="/company#jobs">Jobs</a></li>
+                        <li><a href="/terms">Terms</a></li>
+                        <li><a href="/privacy">Privacy</a></li>
+                        <li><a href="/press">Press</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Docs &amp; help</h4>
+                    <ul>
+                        <li><a href="https://docs.sqreen.com/">Documentation</a></li>
+                        <li><a href="https://blog.sqreen.com">Blog</a></li>
+                        <li><a href="/resources">Resources</a></li>
+                        <li><a href="/web-application-security">Learning Center</a></li>
+                        <li><a href="mailto:support@sqreen.com?Subject=Sqreen">Support</a></i>
+                        <li><a href="https://changelog.sqreen.com">Change Log</a></li>
+                        <li><a href="https://sqreen.status.io">Service Status</a></li>
+                        <li><a href="/security">Security</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Talk to sales</h4>
+                    <ul>
+                        <li>
+                            Email: <a href="mailto:sales@sqreen.com">sales@sqreen.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <br>
+                    <h4>Stay in touch</h4>
+                    <ul class="sns">
+                        <li>
+                            <a target="_blank" href="https://github.com/Sqreen">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/8f09b98b1334c5ef2cb2f5dc260971229d1a06b3/79a66/assets/img/logos/github-icon.svg" alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://twitter.com/SqreenIO">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/3ff3317a8dc0f0e4e4917f2ae8970b4e80cda5b5/80662/assets/img/logos/twitter-icon.svg" alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/sqreen">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/cc3606fa27a57e4285450f26a02fed156da314fb/88ba8/assets/img/logos/linkedin-icon.svg" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                    <span class="copyright">© 2019 sqreen.com</span>
+                    <div class="badges">
+                        <a title="Realtime application protection" href="https://docs.sqreen.com/faq/sqreen-badges/">
+                            <img style="width:109px;height:36px" src="https://assets.sqreen.com/badges/20171107/sqreen-light-badge.svg" alt="Sqreen | Runtime Application Protection" />
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</footer>
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+    // Changing color of navigation
+    //=========================================
+    $(document).ready(function(){
+        if ($('header').offset().top >= (window.innerHeight/6)) {
+            $('header').addClass('scrolled');
+        }
+        $(window).on('scroll', function() {
+            var winHeight = window.innerHeight;
+            var winScroll = $('header').offset().top;
+            if (winScroll >= 20) {
+                $('header').addClass('scrolled');
+            }
+            else {
+                $('header').removeClass('scrolled');
+            }
+        });
+
+        // Menu mobile
+        $('.burger').on('click', function(){
+            $('header').toggleClass('open');
+        });
+
+        // Add tracking data to dashboard links if available
+        var attributions = location.search
+            .slice(1)
+            .split("&")
+            .filter(function(s) {
+                return s.startsWith("utm_");
+            })
+            .join("&");
+
+        if (attributions.length > 0 || document.referrer.length > 0) {
+            $('a[href="https://my.sqreen.com/signup"]').attr(
+                "href",
+                "https://my.sqreen.com/signup?" +
+                attributions +
+                "&referrer=" +
+                btoa(document.referrer)
+            );
+            $('a[href="https://my.sqreen.com/login"]').attr(
+                "href",
+                "https://my.sqreen.com/login?" +
+                attributions +
+                "&referrer=" +
+                btoa(document.referrer)
+            );
+        }
+
+        // Add hidden Segment id to netlify forms
+        analytics.ready(function() {
+            var user = analytics.user();
+
+            if (user.id()) {
+                $('input[data-fields=sqreenUserId]').attr('value', user.id());
+            } else {
+                $('input[data-fields=segmentId]').attr('value', user.anonymousId());
+            }
+        })
+
+    });
+</script>
+
+<p class="cookies-warning" style="display:none">
+    Sqreen uses cookies to make its website easier to use. <a href="/privacy">Learn more about cookies.</a>
+    <a href="#close" class="close">
+        X
+    </a>
+</p>
+
+<script>
+    $(function() {
+        var text = $('.cookies-warning');
+        var sign = text.find('.close');
+        cookieTxt = "cookiesWarningShown=1; expires=Wed, 07 Jul 3015 07:28:00 GMT";
+        if (document.cookie.indexOf("cookiesWarningShown=1") !== -1) {
+            return
+        }
+        text.show();
+        sign.click(function() {
+            text.hide();
+            document.cookie = cookieTxt;
+        })
+    })
+</script>
+
+
+
+<script src="/assets/js/shuffle.min.js"></script>
+<script src="/assets/js/qrcode.min.js"></script>
+<script>
+    MktoForms2.loadForm("https://go.sqreen.com", "544-MID-880", 1077);
+    MktoForms2.whenReady(function (form) {
+        $('.mktoForm style').remove();
+        $('.mktoLogicalField').each(function() {
+            $(this).parent().parent().addClass('checkboxField');
+        })
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        form.vals({
+            "utm_source": getParameterByName('utm_source'),
+            "utm_medium": getParameterByName('utm_medium'),
+            "utm_campaign": getParameterByName('utm_campaign')
+        });
+        form.onSubmit(function(){
+            heap.addUserProperties({email: form.vals().Email});
+        });
+    });
+    new QRCode(document.getElementById("qrcode"), {
+        text: "https://www.sqreen.com/checklists/security-engineer-checklist",
+        width: 200,
+        height: 200,
+        colorDark : "#000000",
+        colorLight : "transparent",
+    });
+
+    // Shuffle filtering
+    //========================================
+    var Shuffle = window.Shuffle;
+    var shuffleInstance = window.shuffleInstance;
+    var elements = document.querySelectorAll('.checklist');
+    window.shuffles = [];
+
+    var searchParams = '';
+
+    $('document').ready(function() {
+        searchParams = new URLSearchParams(window.location.search);
+
+        if (!searchParams.has('print')) {
+            window.elements.forEach(function(e, i) {
+                shuffles[i] = new Shuffle(e, {
+                    itemSelector: '.single-item',
+                });
+            });
+        }
+
+    });
+
+    $('.stages-selector li').each(function(i) {
+        $(this).attr('id', i);
+    });
+
+    $('.stages-selector li').on('click', function() {
+        var filter = [];
+        var stagePosition = parseInt($(this).attr('id'));
+        $('.stages-selector li').removeClass('active');
+        for (i = 0; i <= stagePosition; i++) {
+            filter.push($('#'+i).attr("class"));
+            $('#'+i).addClass("active")
+        }
+        elements.forEach(function(e, i) {
+            shuffles[i].filter(filter);
+        });
+    })
+
+    // Scrollspy
+    //========================================
+    $(function() {
+        var lastId,
+            topMenu = $(".checklist-container nav ul"),
+            topMenuHeight = topMenu.outerHeight()+200,
+            menuItems = topMenu.find("a"),
+            scrollItems = menuItems.map(function(){
+                var item = $($(this).attr("href"));
+                if (item.length) { return item; }
+            });
+        menuItems.click(function(e){
+            var href = $(this).attr("href"),
+                offsetTop = href === "#" ? 0 : $(href).offset().top - 120;
+            $('html, body').stop().animate({
+                scrollTop: offsetTop
+            }, 1000);
+            // e.preventDefault();
+        });
+
+        $(window).scroll(function(){
+            var fromTop = $(this).scrollTop()+topMenuHeight;
+            var cur = scrollItems.map(function(){
+                if ($(this).offset().top < fromTop)
+                    return this;
+            });
+            cur = cur[cur.length-1];
+            var id = cur && cur.length ? cur[0].id : "";
+
+            if (lastId !== id) {
+                lastId = id;
+                menuItems
+                    .parent().removeClass("active")
+                    .end().filter("[href='#"+id+"']").parent().addClass("active");
+            }
+        });
+    });
+
+    // Check
+    //========================================
+    $('.check').click(function(){
+        if ($(this).hasClass('checked')) {
+            $(this).removeClass('checked');
+            $(this).parent().find('.expend-bar').removeClass('checked');
+        }
+        else {
+            $(this).addClass('checked');
+            $(this).parent().find('.expend-bar').addClass('checked');
+        }
+    });
+
+    // Progress bar
+    //========================================
+    var percentageTrigger = 30;
+    var checksTrigger = 3;
+    var modalTriggered= false;
+
+    $('.check').on('click', function() {
+        if ($(this).parent().parent().parent().hasClass('shuffle')) {
+            calculateProgressStage()
+        }
+        else {
+            calculateProgress()
+        }
+    });
+
+    $('.close-modal').on('click', function() {
+        $('.completed-modal').removeClass('open');
+    });
+
+    function calculateProgressStage() {
+        var totalChecks = $('.checklist li.shuffle-item--visible').length;
+        var checksChecked = $('.checklist li.shuffle-item--visible .check.checked').length;
+        var percentage = Math.round(100*checksChecked/totalChecks);
+
+        // TO TRIGGER ON CHECKS
+        if (!modalTriggered && checksChecked >= checksTrigger) {
+            // if (!modalTriggered && percentage >= percentageTrigger) {
+            setTimeout(function(){$('.completed-modal').addClass('open')}, 1500);
+            modalTriggered = true;
+        }
+
+        $('.progress-number').text(percentage+'%');
+        $('.bar').css('width', percentage+'%');
+    }
+
+    function calculateProgress() {
+        var totalChecks = $('.checklist li').length;
+        var checksChecked = $('.checklist li .check.checked').length;
+        var percentage = Math.round(100*checksChecked/totalChecks);
+
+        // TO TRIGGER ON CHECKS
+        if (!modalTriggered && checksChecked >= checksTrigger) {
+            // if (!modalTriggered && percentage >= percentageTrigger) {
+            setTimeout(function(){$('.completed-modal').addClass('open')}, 1500);
+            modalTriggered = true;
+        }
+
+        $('.progress-number').text(percentage+'%');
+        $('.bar').css('width', percentage+'%');
+    }
+
+    // Expend/collapse
+    //========================================
+    $('.btn, .expend-bar').click(function(){
+        var parent = $(this).parent().parent();
+        var body = $(parent).find(".body");
+
+        if ($(parent).hasClass('expend')) {
+            $(parent).removeClass('expend');
+            $(body).hide();
+
+            window.elements.forEach(function(e, i) {
+                shuffles[i].update();
+            });
+
+        }
+        else {
+            $(parent).addClass('expend');
+            $(body).show();
+
+            window.elements.forEach(function(e, i) {
+                shuffles[i].update();
+            });
+
+        }
+    });
+
+    // Social
+    //========================================
+    $('.socials a, .social a').on('click', function(e){
+        e.preventDefault();
+        window.open($(this).attr('href'), "", "width=530,height=450");
+    });
+
+    // Converting color
+    //=================================================
+    function hexToHSL(H) {
+        // Convert hex to RGB first
+        let r = 0, g = 0, b = 0;
+        if (H.length == 4) {
+            r = "0x" + H[1] + H[1];
+            g = "0x" + H[2] + H[2];
+            b = "0x" + H[3] + H[3];
+        } else if (H.length == 7) {
+            r = "0x" + H[1] + H[2];
+            g = "0x" + H[3] + H[4];
+            b = "0x" + H[5] + H[6];
+        }
+        // Then to HSL
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        let cmin = Math.min(r,g,b),
+            cmax = Math.max(r,g,b),
+            delta = cmax - cmin,
+            h = 0,
+            s = 0,
+            l = 0;
+
+        if (delta == 0)
+            h = 0;
+        else if (cmax == r)
+            h = ((g - b) / delta) % 6;
+        else if (cmax == g)
+            h = (b - r) / delta + 2;
+        else
+            h = (r - g) / delta + 4;
+
+        h = Math.round(h * 60);
+
+        if (h < 0)
+            h += 360;
+
+        l = (cmax + cmin) / 2;
+        s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+        s = +(s * 100).toFixed(1);
+        l = +(l * 100).toFixed(1);
+
+        return "hsl(" + h + "," + s + "%," + (l+15) + "%)";
+    }
+    function HSLToHex(hsl) {
+        let sep = hsl.indexOf(",") > -1 ? "," : " ";
+        hsl = hsl.substr(4).split(")")[0].split(sep);
+
+        let h = hsl[0],
+            s = hsl[1].substr(0,hsl[1].length - 1) / 100,
+            l = hsl[2].substr(0,hsl[2].length - 1) / 100;
+
+        // Strip label and convert to degrees (if necessary)
+        if (h.indexOf("deg") > -1)
+            h = h.substr(0,h.length - 3);
+        else if (h.indexOf("rad") > -1)
+            h = Math.round(h.substr(0,h.length - 3) * (180 / Math.PI));
+        else if (h.indexOf("turn") > -1)
+            h = Math.round(h.substr(0,h.length - 4) * 360);
+        if (h >= 360)
+            h %= 360;
+
+        let c = (1 - Math.abs(2 * l - 1)) * s,
+            x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+            m = l - c/2,
+            r = 0,
+            g = 0,
+            b = 0;
+
+        if (0 <= h && h < 60) {
+            r = c; g = x; b = 0;
+        } else if (60 <= h && h < 120) {
+            r = x; g = c; b = 0;
+        } else if (120 <= h && h < 180) {
+            r = 0; g = c; b = x;
+        } else if (180 <= h && h < 240) {
+            r = 0; g = x; b = c;
+        } else if (240 <= h && h < 300) {
+            r = x; g = 0; b = c;
+        } else if (300 <= h && h < 360) {
+            r = c; g = 0; b = x;
+        }
+        // Having obtained RGB, convert channels to hex
+        r = Math.round((r + m) * 255).toString(16);
+        g = Math.round((g + m) * 255).toString(16);
+        b = Math.round((b + m) * 255).toString(16);
+
+        // Prepend 0s, if necessary
+        if (r.length == 1)
+            r = "0" + r;
+        if (g.length == 1)
+            g = "0" + g;
+        if (b.length == 1)
+            b = "0" + b;
+
+        return "#" + r + g + b;
+    }
+    function updateColor() {
+        $('.bright-color').attr('stop-color', HSLToHex(hexToHSL("#00BAB2")));
+        $('.last-page').css('background', 'linear-gradient(to bottom, '+HSLToHex(hexToHSL("#00BAB2"))+' 0%,#00BAB2 100%)');
+    }
+
+    $('document').ready(function() {
+        updateColor();
+    });
+</script>
+</body>
+</html>

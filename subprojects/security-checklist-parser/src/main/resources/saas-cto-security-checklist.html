@@ -1,0 +1,2687 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+    <!--
+        ___  __ _ _ __ ___  ___ _ __
+       / __|/ _` | '__/ _ \/ _ \ '_  \
+       \__ \ (_| | | |  __/  __/ | | |
+       |___/\__, |_|  \___|\___|_| |_|
+               |_|
+   -->
+
+    <meta charset=UTF-8 />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SaaS CTO Security Checklist</title>
+
+
+    <meta name="description" content="Learn how to protect your SaaS applications with the SaaS CTO security checklist. Select your startup stage and use these rules to improve your application security, infrastructure security and more." />
+
+    <link rel="canonical" href="https://www.sqreen.com/checklists/saas-cto-security-checklist">
+
+    <!-- Style -->
+    <link href="https://www.sqreen.com/css/style.css" rel="stylesheet"/>
+
+    <meta name="application-name" content="Sqreen" />
+    <meta http-equiv="cleartype" content="on" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@SqreenIO">
+    <meta name="twitter:creator" content="@SqreenIO" />
+    <meta name="twitter:url" content="https://www.sqreen.com/checklists/saas-cto-security-checklist">
+    <meta name="twitter:text:title" content="SaaS CTO Security Checklist">
+    <meta name="twitter:description" content="Learn how to protect your SaaS applications with the SaaS CTO security checklist. Select your startup stage and use these rules to improve your application security, infrastructure security and more." />
+    <meta name="twitter:image" content="/assets/img/uploads/share.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="https://www.sqreen.com/checklists/saas-cto-security-checklist">
+    <meta property="og:title" content="SaaS CTO Security Checklist">
+    <meta property="og:image" content="/assets/img/uploads/share.png">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="627">
+    <meta property="og:description" content="Learn how to protect your SaaS applications with the SaaS CTO security checklist. Select your startup stage and use these rules to improve your application security, infrastructure security and more.">
+    <meta property="og:site_name" content="Sqreen">
+    <meta property="og:locale" content="en_US">
+
+
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/favicon/manifest.json">
+    <link rel="mask-icon" href="/assets/img/favicon/safari-pinned-tab.svg" color="#4842b7">
+    <meta name="theme-color" content="#4842b7">
+
+    <!-- Segment -->
+    <script type="text/javascript">
+        ! function() {
+            var analytics = window.analytics = window.analytics || [];
+            if (!analytics.initialize)
+                if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
+                else {
+                    analytics.invoked = !0;
+                    analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "page", "once", "off", "on"];
+                    analytics.factory = function(t) {
+                        return function() {
+                            var e = Array.prototype.slice.call(arguments);
+                            e.unshift(t);
+                            analytics.push(e);
+                            return analytics
+                        }
+                    };
+                    for (var t = 0; t < analytics.methods.length; t++) {
+                        var e = analytics.methods[t];
+                        analytics[e] = analytics.factory(e)
+                    }
+                    analytics.load = function(t) {
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = !0;
+                        e.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
+                        var n = document.getElementsByTagName("script")[0];
+                        n.parentNode.insertBefore(e, n)
+                    };
+                    analytics.SNIPPET_VERSION = "3.1.0";
+                    analytics.load("5nxb5iyxWJCBesRTBrDlKocYYhI0yk6H");
+                    analytics.page()
+                }
+        }();
+    </script>
+
+    <script src="/assets/js/purser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.5.0/qs.min.js"></script>
+    <script type="text/javascript">var tracking = Object.assign({},Qs.parse(location.search, { ignoreQueryPrefix: true }),purser.fetch(),{originalReferrer: (window.sessionStorage && sessionStorage.getItem('referrer'))? sessionStorage.getItem('referrer'): document.referrer});if (window.sessionStorage && !sessionStorage.getItem('referrer')) {sessionStorage.setItem('referrer', document.referrer)}window.analytics.page(null, null, tracking);document.cookie = 'tracking=' + JSON.stringify(tracking) + ';domain=sqreen.com';</script>
+
+    <!-- Heap Analytics -->
+    <script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};heap.load("3784968534");</script>
+
+    <!-- Fullstory -->
+    <script>
+        window['_fs_debug'] = false;
+        window['_fs_host'] = 'fullstory.com';
+        window['_fs_org'] = 'H52T8';
+        window['_fs_namespace'] = 'FS';
+        (function(m,n,e,t,l,o,g,y){
+            if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+            g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+            o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js';
+            y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+            g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+            g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+            g.consent=function(a){g("consent",!arguments.length||a)};
+            g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+            g.clearUserCookie=function(){};
+        })(window,document,window['_fs_namespace'],'script','user');
+    </script>
+
+    <!-- SUMO -->
+    <script async>(function(s,u,m,o,j,v){j=u.createElement(m);v=u.getElementsByTagName(m)[0];j.async=1;j.src=o;j.dataset.sumoSiteId='0192db87363591a2d11e3ab3e0366ec2da806a510963217183f98874951131e1';v.parentNode.insertBefore(j,v)})(window,document,'script','//load.sumo.com/');</script>
+
+
+
+
+    <style>:root {--main-color: #772C75}</style>
+</head>
+<body class="checklist-page">
+<header class="">
+    <div class="wrapper">
+        <nav>
+            <div class="left">
+                <a href="/" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 39.2" width="144" height="39.2">
+                        <path class="cube" d="M56.4 16c-1.7-.9-3.2-1.4-4.8-1.4-1.3 0-2.1.5-2.1 1.4 0 2.5 9.3.4 9.3 7.1 0 3-2.7 5.5-7 5.5-1.9 0-4.3-.4-5.9-1.3 0 0-.1 0-.1-.1-.2-.2-.3-.5-.2-.7l1.1-2.5c.1-.3.5-.4.8-.3l.2.1c1.4.6 2.9.9 4.2.9 2 0 2.7-.5 2.7-1.6 0-2.8-9.3-.8-9.3-7.1 0-2.9 2.5-5.4 6.4-5.4 2 0 4.7.7 6.4 1.7l.2.1c.3.2.4.5.2.8l-1.1 2.5c-.1.3-.5.4-.8.3h-.2zm17.5-4.7h2.9c.3 0 .6.3.6.6v23.9c0 .3-.3.6-.6.6h-2.9c-.3 0-.6-.3-.6-.6v-8.4c-1.1.7-2.7 1.3-4.3 1.3-5 0-8.8-4-8.8-9s3.8-9 8.8-9c1.6 0 3.2.5 4.3 1.3v-.1c0-.3.3-.6.6-.6zm-.6 11.4v-6c-1.2-1.2-2.6-1.9-4.2-1.9-2.7 0-4.7 2.1-4.7 4.9s2 4.9 4.7 4.9c1.6.1 3-.5 4.2-1.9zm18-11.4c-.9-.4-1.9-.5-2.8-.5-1.6 0-3.2.5-4.5 1.3v-.2c0-.3-.2-.5-.5-.5h-3.2c-.3 0-.5.2-.5.5v16.4c0 .3.2.5.5.5h3.2c.3 0 .5-.2.5-.5V16.6c1-1.1 2.6-1.8 4.3-1.8.4 0 .9 0 1.4.1.3.1.6-.1.7-.3l1.2-2.7c0-.2-.1-.5-.3-.6zm15.2 15.6c-1.6 1-3.9 1.8-6.2 1.8-5.5 0-9.5-4-9.5-9.1 0-4.9 3.4-8.8 8.7-8.8 4.8 0 7.8 4.1 7.8 8.3 0 .4 0 .8-.1 1.2 0 .3-.3.5-.6.5H95c.5 2.6 2.6 4.2 5.3 4.2 1.5 0 3.2-.4 4.7-1.3.3-.1.6 0 .7.2l1.1 2.4c.1.2 0 .4-.1.5 0 0-.1.1-.2.1zm-11.3-9.3h7.9c-.2-1.7-1.7-3.1-3.6-3.1-2.4 0-3.8 1.4-4.3 3.1zm29.5 9.3c-1.6 1-3.9 1.8-6.2 1.8-5.5 0-9.5-4-9.5-9.1 0-4.9 3.4-8.8 8.7-8.8 4.8 0 7.8 4.1 7.8 8.3 0 .4 0 .8-.1 1.2 0 .3-.3.5-.6.5h-11.5c.5 2.6 2.5 4.2 5.3 4.2 1.5 0 3.2-.4 4.7-1.3.3-.1.6 0 .7.2l1.1 2.4c.1.2 0 .4-.2.5-.1 0-.1.1-.2.1zm-11.3-9.3h7.9c-.2-1.7-1.7-3.1-3.5-3.1-2.5 0-3.9 1.4-4.4 3.1zm13.9-5.7v16.2c0 .3.3.6.6.6h3c.3 0 .6-.3.6-.6V16.6c1-1.1 2.6-1.8 4.3-1.8 2.7 0 4.1 1.5 4.1 4.3v9c0 .3.3.6.6.6h2.9c.3 0 .6-.3.6-.6v-9.4c0-4.8-2.7-7.9-8.1-7.9-1.6 0-3.2.5-4.5 1.3V12c0-.3-.3-.6-.6-.6h-2.9c-.3-.1-.6.2-.6.5z" />
+                        <ellipse class="circle" cx="17.3" cy="19.6" rx="9.3" ry="9.3"/>
+                        <path class="letters" d="M16 35.7v-15L2.7 13.1v13.2l4.7-2.7c.3.8.8 1.6 1.3 2.3l-4.9 2.8 12.2 7zm2.6 0l12.2-7-4.9-2.8c.5-.7 1-1.5 1.3-2.3l4.7 2.7V13.1l-13.3 7.7v14.9zM3.7 10.6l13.6 7.9 13.6-7.9-12.3-7.1V9c-.4-.1-.9-.1-1.3-.1s-.9 0-1.3.1V3.5L3.7 10.6zM18.5.3l14.9 8.6c.7.4 1.2 1.2 1.2 2.1v17.2c0 .9-.5 1.6-1.2 2.1l-14.9 8.6c-.7.4-1.7.4-2.4 0L1.2 30.3C.5 29.8 0 29.1 0 28.2V11c0-.9.5-1.6 1.2-2.1L16.1.3c.7-.4 1.6-.4 2.4 0z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="right">
+                <div class="items">
+                    <div class="mobile-wrapper">
+
+                        <div class="dropdown-container">
+                            <a href="/product" class="item">Product</a>
+                            <ul class="dropdown">
+                                <li><a href="/product">Overview</a></li>
+                                <li><a href="/modules">Protection Modules</a></li>
+                                <li><a href="/runtime-application-self-protection">RASP</a></li>
+                                <li><a href="/in-app-web-application-firewall">In-App WAF</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown-container">
+                            <a class="item hideOnMobile">Solutions</a>
+                            <ul class="dropdown">
+                                <li><a href="/solutions/engineering-teams">For Engineering Teams</a></li>
+                                <li><a href="/solutions/security-teams">For Security Teams</a></li>
+                            </ul>
+                        </div>
+                        <a href="/runtime-application-self-protection" class="item showOnlyMobile">RASP</a>
+                        <a href="/in-app-web-application-firewall" class="item showOnlyMobile">In-App WAF</a>
+                        <a href="/modules" class="item showOnlyMobile">Protection Modules</a>
+                        <a href="/pricing" class="item">Pricing</a>
+                        <a href="/customers" class="item">Customers</a>
+                        <a href="https://docs.sqreen.com/" class="item showOnlyMobile">Docs</a>
+                        <div class="dropdown-container">
+                            <a href="/resources" class="item">Resources</a>
+                            <ul class="dropdown">
+                                <li><a href="/resources">Content Library</a></li>
+                                <li><a href="/web-application-security">Learning Center</a></li>
+                                <li><a href="https://blog.sqreen.com/">Blog</a></li>
+                                <li><a href="https://docs.sqreen.com/">Docs</a></li>
+                            </ul>
+                        </div>
+                        <a href="/demo" class="item highlighted">Demo</a>
+                        <span class="separator"></span>
+                        <a href="https://my.sqreen.com/login" class="item">Log in</a>
+                        <a href="https://my.sqreen.com/signup" class="new-button yellow">FREE TRIAL</a>
+
+                    </div>
+                </div>
+                <div class="burger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" width="38" height="38" alt="Open the menu on mobile">
+                        <path d="M28.3 13.8H9.7c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1h18.6c.6 0 1.1.5 1.1 1.1 0 .6-.5 1.1-1.1 1.1zm0 6H9.7c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1h18.6c.6 0 1.1.5 1.1 1.1 0 .6-.5 1.1-1.1 1.1zm0 6H9.7c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1h18.6c.6 0 1.1.5 1.1 1.1 0 .6-.5 1.1-1.1 1.1z"/>
+                    </svg>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+
+
+<section class="header checklist-header">
+    <h1>The SaaS CTO Security Checklist</h1>
+    <p class="subtitle">Security shouldn’t feel like a chore. This second edition of the SaaS CTO Security Checklist provides actionable security best practices for CTOs or developers. Select your startup stage and use these rules to improve your security!</p>
+</section>
+<div class="cover" style="content: url('/assets/img/uploads/cover-small-cto-checklist.png');"></div>
+<div class="back-cover"></div>
+
+<div class="completed-modal">
+    <div class="background"></div>
+    <div class="modal">
+        <button class="close-modal">
+            <img src="https://d33wubrfki0l68.cloudfront.net/39a4a5ee0d0ff0385bcd05d5715988e55dcd08fe/b7b85/assets/img/icons/icon-fullscreen.svg" alt="Close the modal">
+        </button>
+        <img class="pic" src="https://d33wubrfki0l68.cloudfront.net/d64db65ace7225a836a70d6be65505c9a28a66c3/40bca/assets/img/icons/tada.png" alt="Tada">
+        <h3>Great Job!</h3>
+        <p>Continue improving your security with Sqreen's monitoring and protection platform. It just takes a few minutes to get started.</p>
+        <a href="https://my.sqreen.com/signup" class="new-button violet">Try Sqreen now</a>
+    </div>
+</div>
+
+<section class="checklist-container">
+    <div class="wrapper">
+        <div class="left">
+            <div class="progression">
+                <span class="sub-text">your progress</span>
+                <div class="progress-text"><span class="progress-number">0%</span> complete</div>
+                <div class="progression-bar">
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <h4>Categories</h4>
+            <nav class="checklist-nav">
+                <ul>
+
+                    <li><a href="#your-employees">Your employees</a></li>
+
+                    <li><a href="#your-code">Your code</a></li>
+
+                    <li><a href="#your-application">Your application</a></li>
+
+                    <li><a href="#your-infrastructure">Your infrastructure</a></li>
+
+                    <li><a href="#your-company">Your company</a></li>
+
+                    <li><a href="#your-product-users">Your product users</a></li>
+
+                </ul>
+            </nav>
+
+            <h5>Get the PDF version</h5>
+            <div class="pdf-form">
+                <script src="https://go.sqreen.com/js/forms2/js/forms2.min.js"></script>
+                <form id="mktoForm_1070"></form>
+            </div>
+
+            <div class="social">
+                <h3>Share on</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsaas-cto-security-checklist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="25">
+                                <path fill-rule="evenodd" d="M11.63 8.095H7.67V5.5c0-.974.646-1.2 1.1-1.2h2.797V.014L7.717 0C3.443 0 2.47 3.195 2.47 5.24v2.855H0v4.414h2.47V25h5.2V12.51h3.507l.454-4.415"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsaas-cto-security-checklist&text=SaaS+CTO+Security+Checklist&via=SqreenIO&related=SqreenIO">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 30 30">
+                                <path fill="#787878" d="M9.5 27.2C20.8 27.2 27 17.8 27 9.7v-.8c1.1-.8 2.2-1.9 3-3.2-1.1.5-2.3.8-3.5 1 1.3-.8 2.2-2 2.7-3.4-1.2.7-2.6 1.2-3.9 1.5-2.3-2.5-6.2-2.6-8.7-.3-1.6 1.5-2.3 3.8-1.8 5.9-5-.2-9.6-2.6-12.7-6.4-1.6 2.8-.8 6.4 1.9 8.2-1 0-1.9-.3-2.8-.8v.1c0 2.9 2.1 5.4 4.9 6-.9.2-1.9.3-2.8.1.8 2.5 3.1 4.2 5.7 4.3-2.2 1.7-4.9 2.6-7.6 2.6-.5 0-1 0-1.5-.1 2.9 1.9 6.2 2.8 9.6 2.8" class="st0"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsaas-cto-security-checklist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25">
+                                <path fill-rule="evenodd" d="M21.128 20.927h-3.764v-6.04c0-1.516-.544-2.552-1.907-2.552-1.04 0-1.66.698-1.932 1.373-.1.24-.123.578-.123.915v6.304H9.637s.05-10.23 0-11.288h3.765v1.596c.5-.77 1.395-1.864 3.393-1.864 2.476 0 4.333 1.614 4.333 5.082v6.472zM5.672 8.097h-.025c-1.263 0-2.08-.867-2.08-1.95 0-1.107.843-1.95 2.13-1.95 1.288 0 2.08.843 2.106 1.95 0 1.083-.818 1.95-2.13 1.95zM3.79 20.927h3.764V9.64H3.79v11.287zM23.08 0H1.84C.825 0 0 .802 0 1.79v21.42C0 24.196.824 25 1.84 25h21.24c1.018 0 1.843-.803 1.843-1.79V1.79c0-.988-.825-1.79-1.842-1.79z"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+
+            <div class="filter-bar">
+                <h3>Timeline</h3>
+                <ul class="stages-selector">
+
+                    <li class="seed active">seed</li>
+
+                    <li class="series-a active">series A</li>
+
+                    <li class="series-b+ active">series B+</li>
+
+                </ul>
+            </div>
+
+
+            <div class="checklist-content">
+
+                <div class="scrollspy" id="your-employees">
+                    <h2>Your employees</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Accustom everyone to good security practices</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>People are often the weakest links in any company’s security. By holding trainings to explain how an attacker could infiltrate your company, you will increase their awareness and thus minimize the chance of them falling for common traps. Some things to cover include phishing emails, and the dangers of USB drives and email attachments.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.secureworks.com/blog/cybersecurity-awareness-training-best-practices">https://www.secureworks.com/blog/cybersecurity-awareness-training-best-practices</a></li>
+                                    <li><a href="https://resources.infosecinstitute.com/top-10-security-awareness-training-topics-for-your-employees/">https://resources.infosecinstitute.com/top-10-security-awareness-training-topics-for-your-employees/</a></li>
+                                    <li><a href="https://sudo.pagerduty.com/">https://sudo.pagerduty.com/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Accustom your team to locking their computers</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Your office may be secured, but you will eventually have to receive external people for a party or a meeting. Someone with physical access to an employee computer can do a lot of harm in a very short amount of time, so locking all computers is a great habit. If you get in the habit of locking your machine at the office, you’ll be unlikely to forget to also do it in a Starbucks or at a meetup.</p>
+
+                                <p>Many organizations make it a game to catch fellow employees’ computers unlocked. This is a good way to reinforce the habit of locking your computer for everyone. At Sqreen, for example, if someone catches another person’s laptop unlocked while they’re AFK, they can type “Cookies!” in that person’s Slack. That person will then have to bring in cookies for the office!</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.cnet.com/how-to/7-ways-to-lock-your-macbook">https://www.cnet.com/how-to/7-ways-to-lock-your-macbook</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Do not share user accounts</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Sharing a user account makes it hard to understand who is using the service or to identify who has performed a given action. This makes it much harder to recognize when an account has been taken over by an outside party. It also makes it harder to remove access to an account when employees leave the company, opening that account up to potential abuse.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Encrypt all employee laptops &amp; phones</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>By encrypting all laptops, you protect both your company’s assets, and your employee’s private files. Encrypting your employee’s phones is the same, and will protect their security in the case of either theft or accidents.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://support.apple.com/en-us/HT204837">https://support.apple.com/en-us/HT204837</a></li>
+                                    <li><a href="https://wiki.archlinux.org/index.php/Dm-crypt">https://wiki.archlinux.org/index.php/Dm-crypt</a></li>
+                                    <li><a href="https://support.microsoft.com/en-us/instantanswers/e7d75dd2-29c2-16ac-f03d-20cfdf54202f/turn-on-device-encryption">https://support.microsoft.com/en-us/instantanswers/e7d75dd2-29c2-16ac-f03d-20cfdf54202f/turn-on-device-encryption</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Follow an onboarding / offboarding checklist</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Onboarding and offboarding are important security moments for your employees. You’ll want to ensure that new employees enact the security measures needed and that your company follows the appropriate steps for employees who are leaving.</p>
+
+                                <p>Your onboarding checklist should contain a list of all the steps you need to follow when an employee, contractor, or intern joins your company. A similar list can also be used when someone is leaving your team. Ensure that you deprovision all accounts they had access to.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://github.com/92bondstreet/awesome-onboarding">https://github.com/92bondstreet/awesome-onboarding</a></li>
+                                    <li><a href="https://www.rippling.com/">https://www.rippling.com/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Hire your first security engineer</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>As your company grows, you’ll want to bring in a security expert and centralize your application security responsibilities on them. To determine if it’s the right time to do so, ask yourself the following questions:</p>
+                                <ul>
+                                    <li>do we have a security roadmap?</li>
+                                    <li>do we manage to deliver on it?</li>
+                                </ul>
+
+                                <p>If you don’t, then it’s the time to strategically consider what your security roadmap should look like, and to find out what kind of security engineer you need.</p>
+
+                                <p>It’s important to note that you shouldn’t hire a specialized security person too early. Early on, security is something that needs to be baked into your engineering organization rather than immediately offloaded to someone else. Only when your engineering team is fully bought into security but is simply getting overwhelmed should you bring in a specialized security engineer.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://medium.com/starting-up-security/hiring-the-cso-b737c30e098f">https://medium.com/starting-up-security/hiring-the-cso-b737c30e098f</a></li>
+                                    <li><a href="https://www.darkreading.com/threat-intelligence/the--typical--security-engineer-hiring-myths-and-stereotypes/a/d-id/133334">https://www.darkreading.com/threat-intelligence/the–typical–security-engineer-hiring-myths-and-stereotypes/a/d-id/133334</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Monitor your user’s computers</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>The more employees you have, the bigger the risk of them getting infected by malicious software, such as botnets. Using a HIPS system on employee hardware could help you get ahead of any problems via alerts and notifications.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.stormshield.com/">https://www.stormshield.com/</a></li>
+                                    <li><a href="https://www.microsoft.com/en-us/windows/windows-defender/">https://www.microsoft.com/en-us/windows/windows-defender/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Require 2FA wherever possible</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Your employees should all use 2-factor authentication. By adding 2FA, you add an extra layer of security. Should your employee’s password get stolen, the attacker would still be locked out unless they have access to the second factor (e.g. phone app or text) as well. As a CTO, your role is to make sure everyone complies with this rule. Phones are the most commonly used device for second factors, and thus have to be secured accordingly (e.g. with codes or biometry). Another option is to use purpose-built hardware-based 2FA, like Yubikeys.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://en.wikipedia.org/wiki/Multi-factor_authentication">https://en.wikipedia.org/wiki/Multi-factor_authentication</a></li>
+                                    <li><a href="https://support.google.com/a/answer/184711">https://support.google.com/a/answer/184711</a></li>
+                                    <li><a href="https://get.slack.help/hc/en-us/articles/212221668-Require-two-factor-authentication-for-your-team">https://get.slack.help/hc/en-us/articles/212221668-Require-two-factor-authentication-for-your-team</a></li>
+                                    <li><a href="https://www.yubico.com/why-yubico/how-yubikey-works/">https://www.yubico.com/why-yubico/how-yubikey-works/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Use a password manager to ensure you only use strong passwords</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Using a complex and unique password for every website is great advice, but it can be very difficult to remember all of them. Rather than reusing passwords or storing your passwords somewhere others could access, use a password manager. Password managers are a great way to manage multiple passwords across sites, since they will remember everything for you with a single master password, and can often generate unique strong passwords for you. Encourage your employees to do likewise, and purchase a business plan to a password manager if necessary.</p>
+
+                                <p>Some great password managers are:</p>
+                                <ul>
+                                    <li><a href="https://www.dashlane.com">https://www.dashlane.com</a></li>
+                                    <li><a href="https://lastpass.com">https://lastpass.com</a></li>
+                                    <li><a href="https://onelogin.com">https://onelogin.com</a></li>
+                                    <li><a href="https://support.apple.com/en-us/HT204085">https://support.apple.com/en-us/HT204085</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Use centralized account management</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Having a centralized place with all user authorizations is the best way not to forget anything once you need to update a user profile (e.g. if an internship came to its end). It is also a great place to define the standard account creation process you need for a given user. If you can, implement SSO to simplify and automate this process.</p>
+
+                                <p>Configuring with Google Apps: <a href="https://support.google.com/a/answer/6087519">https://support.google.com/a/answer/6087519</a></p>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="scrollspy" id="your-code">
+                    <h2>Your code</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Add security bugs to your incident tracking tool</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Every developer should contribute to maintaining a list of security issues that need to be fixed in the future. Making them available to the rest of the team will increase security awareness in your company.</p>
+
+                                <p>Treat security bugs like any other type of bug – determine their priority based on whether or not they are exploitable and the damage that could be done. Additionally, hold post-mortems for serious security bugs with the team to ensure that everyone gets visibility and learns from them.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Automate security within your SDLC</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>If your security practices impact your development velocity, they will be looked at as more of a burden than a valuable step. The best practices today are to take lessons from DevOps and find ways to bring security closer to developers. Leverage tools that can automate security checks and monitoring. Implementing automated SAST/DAST tools, vulnerability dependency scanning, and others will help you catch the obvious flaws before they get into production. Just beware that you’ll have to sift through false positives and that these tools have limited scope.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://en.wikipedia.org/wiki/Systems_development_life_cycle">https://en.wikipedia.org/wiki/Systems_development_life_cycle</a></li>
+                                    <li><a href="https://github.com/devsecops/awesome-devsecops">https://github.com/devsecops/awesome-devsecops</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Enforce a secure code review checklist</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Security should always be kept in mind while coding. Pull request reviews should be performed with security in mind as well. Depending on where the code is, the checks should be different. Dealing with user entry is one thing, dealing with business structures is another – the concerns are related to the context.</p>
+
+                                <p>In addition to common sense, keep in mind typical security flaws. For example, many code snippets from places like StackOverflow have not been written with security in mind. If your team pulls code snippets from the Internet, make sure they double check them for security before deploying them.</p>
+
+                                <p>Security competency is also a good topic to ask about when interviewing a candidate.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.owasp.org/index.php/Top_10-2017_Top_10">https://www.owasp.org/index.php/Top_10-2017_Top_10</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Keep secrets away from code</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Never commit secrets in your code. They should be handled and stored separately in order to prevent them from accidentally being shared or exposed. This keeps a clear layer of separation between your environments (typically development, staging, and production).</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.infosecurity-magazine.com/opinions/comment-tips-for-private-key-management/">https://www.infosecurity-magazine.com/opinions/comment-tips-for-private-key-management/</a></li>
+                                    <li><a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-managing-secrets-safely-with-version-control-systems">https://www.digitalocean.com/community/tutorials/an-introduction-to-managing-secrets-safely-with-version-control-systems</a></li>
+                                    <li><a href="https://www.vaultproject.io/">https://www.vaultproject.io/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Never do cryptography yourself</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Always rely on existing mechanisms, libraries, and tools. Cryptography is an expertise. Building your own implementations, or using flags and options you don’t fully understand, will expose you to major risks. Libraries such as na.cl (<a href="https://nacl.cr.yp.to/">https://nacl.cr.yp.to/</a>) expose only a few options and restrict you to the good choices.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Onboard your software engineers with a security training</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Secure applications start with secure developers. Your software engineers need to be aware of security best practices in order to write secure code and to perform security-minded code reviews. Since security is usually not something hiring managers consider during recruitment, an initial training at onboarding will help your devs reach a minimum level of security.</p>
+
+                                <p>Also, consider checking for security competency during the hiring process. This will help you better shape your training.</p>
+
+                                <p>Some good security training options:</p>
+                                <ul>
+                                    <li><a href="https://safecode.org">https://safecode.org</a></li>
+                                    <li><a href="https://sudo.pagerduty.com/">https://sudo.pagerduty.com/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Perform security-oriented test sessions</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Once in a while, the entire technical team should sit together and spend time targeting all parts of the application, looking for vulnerabilities. This is a great time to test for account isolation, token unicity, unauthenticated paths, etc… You will heavily rely on your browser’s web console, curl, and 3rd party tools such as Zap (<a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project</a>).</p>
+
+                                <p>The benefit of doing these test sessions yourselves is that your team has the best understanding of your application, and likely where the weak points are. Showing that they can be exploited (or not) is valuable feedback for the team.
+                                    These sessions complement external pentests quite well.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.owasp.org/index.php/OWASP_Testing_Guide_v4_Table_of_Contents">https://www.owasp.org/index.php/OWASP_Testing_Guide_v4_Table_of_Contents</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Use a pre-production analysis tool</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Pre-production analysis tools like static code analysis (SAST) can help identify some of your low-hanging security fruits. They also improve the overall security awareness of your team when the checks are automatically integrated into the code review process. But keep in mind that these tools generate a lot of false positives that can quickly overwhelm you with meaningless alerts. The best practice is to make them part of your process, but not too rely too heavily on them.</p>
+
+                                <p>Tools:</p>
+                                <ul>
+                                    <li><a href="https://www.owasp.org/index.php/Source_Code_Analysis_Tools">https://www.owasp.org/index.php/Source_Code_Analysis_Tools</a></li>
+                                    <li><a href="https://find-sec-bugs.github.io/">Findbugs (Java)</a></li>
+                                    <li><a href="https://github.com/presidentbeef/brakeman">Brakeman (Ruby)</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Use a secure development life cycle</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>The secure development lifecycle is a process that helps tackle security issues at the beginning of a project. While rarely used as is, it provides good insights at all stages of the project, from the specification to the release. It will allow you to enforce good practices at every stage of the project life.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://en.wikipedia.org/wiki/Systems_development_life_cycle">https://en.wikipedia.org/wiki/Systems_development_life_cycle</a></li>
+                                    <li><a href="https://www.owasp.org/images/7/76/Jim_Manico_(Hamburg)_-_Securiing_the_SDLC.pdf">https://www.owasp.org/images/7/76/Jim_Manico_(Hamburg)_-_Securiing_the_SDLC.pdf</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="scrollspy" id="your-application">
+                    <h2>Your application</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Automate security once your app is in production</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Several tools offer ways to automate custom security protection in production. Wherever possible, leverage your business information and logic to automate monitoring and protection of security situations systemic to your particular business. The more you can automate, the easier you’ll be able to scale your security.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://docs.sqreen.com/security-automation/introduction-playbooks/">https://docs.sqreen.com/security-automation/introduction-playbooks/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Don’t forget about your FaaS security</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>If you’re using FaaS in your company, you should ensure that it’s not a weak point for security.</p>
+
+                                <p>Make sure:</p>
+                                <ul>
+                                    <li>Your code is centralized - either in a FaaS-specific repository or within the applications that the function depends upon</li>
+                                    <li>Deployment is centralized in the CI. With FaaS abstracting things for you, it can be easy to forget about the different functions!</li>
+                                    <li>Privileges used by the function are minimalist (and distinct from the privileges used to deploy it)</li>
+                                </ul>
+
+                                <p>On top of that, FaaS should follow all the security criteria that you apply to your applications - from specifications, to development, to operating in production.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://techbeacon.com/enterprise-it/how-lock-down-your-serverless-apps-five-steps">https://techbeacon.com/enterprise-it/how-lock-down-your-serverless-apps-five-steps</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Hire an external penetration testing team</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Pentesters take an external and naive point of view of your infrastructure and products. They will take nothing for granted and will check even the most basic assumptions, as well as all of your infrastructure. The experience can help focus your security efforts and mindset.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.softwaretestinghelp.com/penetration-testing-guide/">https://www.softwaretestinghelp.com/penetration-testing-guide/</a></li>
+                                    <li><a href="https://blog.sqreen.com/leverage-pentest/">https://blog.sqreen.com/leverage-pentest/</a></li>
+                                    <li><a href="https://www.sqreen.com/checklists/pentest-checklist">https://www.sqreen.com/checklists/pentest-checklist</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Keep track of your dependencies</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Applications are built using dozens of third party libraries. A single flaw in any of these libraries may put your entire application at risk. According to OWASP, one of the most common application security risks is using dependencies with known vulnerabilities. Some tools allow you to check your dependencies for vulnerabilities and ensure that they are up-to-date:</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://help.github.com/en/articles/about-security-alerts-for-vulnerable-dependencies">Github</a></li>
+                                    <li><a href="https://sqreen.com/">https://sqreen.com/</a></li>
+                                    <li><a href="https://snyk.io/">https://snyk.io/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Run it unprivileged</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>In the case that an attacker does successfully attack your application, having it running as a user with restricted privileges will make it harder for the attacker to take over the host and/or to bounce to other services. Privileged users are root on Unix systems, and Administrator or System on Windows systems.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Use a real-time protection service, like a RASP</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>These days, WAFs are pretty outdated. It’s better to use services that sit closer to your application. These tools protect web applications from attacks at runtime. An Application Security Management (ASM) tool can do for security in your application what APM tools do for performance. They can monitor and protect against all major vulnerabilities (SQL injections, XSS attacks, account takeovers, code injections, etc…) without false positives.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/">https://www.sqreen.com/</a></li>
+                                    <li><a href="http://www8.hp.com/us/en/software-solutions/appdefender-application-self-protection/">http://www8.hp.com/us/en/software-solutions/appdefender-application-self-protection/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="scrollspy" id="your-infrastructure">
+                    <h2>Your infrastructure</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Backup, test your backups, then backup again</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Backup all your critical assets. Ensure that you attempt to restore your backups frequently so you can guarantee that they’re working as intended. S3 is a very cheap and effective way to backup your assets.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://aws.amazon.com/getting-started/backup-files-to-amazon-s3/">https://aws.amazon.com/getting-started/backup-files-to-amazon-s3/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Centralize and archive your logs and make them meaningful</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Logs are very useful for understanding what happened after an incident occurs, finding where an attacker came from, and possibly even who they are. Many solutions exist to gather and organize logs.</p>
+
+                                <p>Don’t forget, you need to take care that the system time configured on each of your machines is in sync so that you can easily cross-correlate logs. You’ll have a much harder time if they’re not (no pun intended).</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://en.wikipedia.org/wiki/Network_Time_Protocol">https://en.wikipedia.org/wiki/Network_Time_Protocol</a></li>
+                                    <li><a href="https://www.loggly.com/">https://www.loggly.com/</a></li>
+                                    <li><a href="https://www.elastic.co/products/kibana">https://www.elastic.co/products/kibana</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Check your website&#39;s basic security</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Websites are exposed to many different classes of vulnerabilities, and some may be prevented by appropriately configuring the server. Best practices include adding headers such as HSTS, X-Frame-Options, X-Content-Type-Options, etc. Add in a Content Security Policy if possible.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/scanner">https://www.sqreen.com/scanner</a></li>
+                                    <li><a href="https://securityheaders.com">https://securityheaders.com</a></li>
+                                    <li><a href="https://www.ssllabs.com/">https://www.ssllabs.com/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Isolate assets at the network level</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Only your public APIs should be exposed to the Internet. You should isolate your networks to prevent any unauthorized access to your database. This will prevent attackers from connecting to it and attempting to crack the password - or exploit vulnerabilities.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html">https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html</a></li>
+                                    <li><a href="https://www.sqreen.com/resources/aws-security">https://www.sqreen.com/resources/aws-security</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Keep your OS &amp; Docker images up to date</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>You should download all of your OS’s and Docker security updates and regularly update your machines and images. If you use a PAAS provider (Heroku, AWS Beanstalk, etc…), they will take care of this for you. If not, you will need to do it yourself. Ideally, automate this process if possible.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://github.com/containrrr/watchtower">https://github.com/containrrr/watchtower</a></li>
+                                    <li><a href="https://spacewalkproject.github.io/">https://spacewalkproject.github.io/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Know how to redeploy your infrastructure from scratch</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Hopefully you never need to, but in the case of a disaster, this allows you to quickly spawn new infrastructure and populate it with data from your backups. This is the perfect use case for disaster recovery.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://aws.amazon.com/cloudformation/">https://aws.amazon.com/cloudformation/</a></li>
+                                    <li><a href="https://cloud.google.com/deployment-manager/">https://cloud.google.com/deployment-manager/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Monitor exposed services</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Your developers constantly deploy new services. Step one is to ensure that you keep track of them, but you also want to ensure that they don’t expose sensitive services to the outside world, (for instance, a database accessible from the Internet without network filtering). Using a network scanner will help you ensure that no unexpected services are exposed, and will tell you when new services are vulnerable and should be updated.</p>
+
+                                <p>Check this cloud friendly tool:</p>
+                                <ul>
+                                    <li><a href="https://intruder.io/">https://intruder.io/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Monitor internal services</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>It’s a fairly common attitude to not focus on the security of your internal services as much as your external services. However, as you get bigger, you will lose visibility on the services used internally. When you start to lose track of internal services, they become a vector through which viruses or worms could spread. Additionally, more people (like contractors) will have access to your internal network. If it’s not secured, this puts it at risk.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.tenable.com/downloads/nessus">https://www.tenable.com/downloads/nessus</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Protect your application from DDoS attacks</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>A Distributed Denial-of-Service Attack (DDoS) can have a real impact on your bottom line and customer experience. Basic DDoS protections can easily be integrated with a CDN, but there are purpose-built DDoS protection tools available as well.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.cloudflare.com/">https://www.cloudflare.com/</a></li>
+                                    <li><a href="https://aws.amazon.com/cloudfront/">https://aws.amazon.com/cloudfront/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Restrict internal services by IP addresses</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Connections to your infrastructure and non-public properties (hosted CIs, admin interfaces, databases etc.) should only be accessible through a bounce host (in a VPC, behind a bastion host or VPN, etc.).</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://aws.amazon.com/fr/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/">https://aws.amazon.com/fr/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Use encryption on all your websites and APIs</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Encrypting communications is not only about privacy, but also about your users’ safety, since it will prevent most attempts at tampering with what they receive.</p>
+
+                                <p>A free popular solution is: <a href="https://letsencrypt.org/">https://letsencrypt.org/</a></p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://support.google.com/webmasters/answer/6073543?hl=en">https://support.google.com/webmasters/answer/6073543?hl=en</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Watch for unusual patterns in your metrics</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Takeovers will often be used to steal your data or setup your servers to be used as bouncers. These can be detected by watching for unusual patterns in key metrics, such as network bandwidth, CPU and memory consumption, and disk usage.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://newrelic.com/server-monitoring">https://newrelic.com/server-monitoring</a></li>
+                                    <li><a href="https://www.sysdig.com/">https://www.sysdig.com/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="scrollspy" id="your-company">
+                    <h2>Your company</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Be honest and transparent about any data you collect</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Should you be breached, attackers may publicize the data that they gather. Your customers need to be aware of what data you’re storing so they’re not caught by surprise.</p>
+
+                                <p>Additionally, with GDPR now in place, you could face legal and financial repercussions if you collect data about your (European) customers and users that they haven’t consented to give you. Ensure that you are clear about the data that you will collect from users that interact with you.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://hbr.org/2015/05/customer-data-designing-for-transparency-and-trust">https://hbr.org/2015/05/customer-data-designing-for-transparency-and-trust</a></li>
+                                    <li><a href="https://www.enterpriseready.io/gdpr/preparing-for-gdpr/#">https://www.enterpriseready.io/gdpr/preparing-for-gdpr/#</a></li>
+                                    <li><a href="https://github.com/privacyradius/gdpr-checklist">https://github.com/privacyradius/gdpr-checklist</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Build a security-friendly culture</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Mistakes happen. People click on phishing emails, reuse passwords, or overlook vulnerabilities in their code. While you should focus on trying to prevent security breaches in the first place, it’s also important to think about what needs to happen after a breach.</p>
+
+                                <p>From the culture side, the best thing you can do is try and minimize the time between a breach and you finding out about it. This means that your employees have to be trained to recognize potential security breaches, and that you have to build a culture that encourages them to report them. Everyone needs to understand that mistakes are possible and that if they fear that one has happened, they should report their doubt right away, rather than trying to hide it. This can only be achieved with a blameless attitude in the culture and a feeling of psychological safety. Work to instill those feelings.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://securitycultureframework.net/">https://securitycultureframework.net/</a></li>
+                                    <li><a href="https://i.blackhat.com/eu-18/Wed-Dec-5/eu-18-OBoyle-SDL-at-Scale-Growing-Security-Champions.pdf">https://i.blackhat.com/eu-18/Wed-Dec-5/eu-18-OBoyle-SDL-at-Scale-Growing-Security-Champions.pdf</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Create an inventory of your company’s assets</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>A mapping of your company’s assets enables you to monitor the points that need the most attention and vulnerabilities that need to be hardened. You can’t understand your security if you don’t know all the assets that should be secure.</p>
+
+                                <p>For your servers, this is built-in if you are using a cloud service or a PaaS and all your machines are registered / spawned through it. Otherwise, you will need to review all your assets regularly to determine if you still need them, to keep them up to date, and to ensure that they benefit from your latest deployments.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://resources.infosecinstitute.com/asset-management-guide-information-security-professionals/">https://resources.infosecinstitute.com/asset-management-guide-information-security-professionals/</a></li>
+                                    <li><a href="https://magoo.github.io/simple-risk/">https://magoo.github.io/simple-risk/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Do not share your wifi network</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Sharing your company wifi network with guests or neighbors may give them the opportunity to gather information on your network, and allow them to access resources protected by source IP. Use an isolated and dedicated guest wifi network instead. Set up a calendar reminder to change the password every two months, since this password is shared among a potentially large number of people outside your organization.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Ensure that your domain names are protected</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Ensure that your domain names are protected
+                                    Domain names should be renewed regularly. If you bought one from a third party, you should also make sure that the authoritative configured name server is your own. Take a few precautions when registering your domain to make it more difficult to hijack, including transfer locks and using an account owner email on a different domain.</p>
+
+                                <p>Read more:</p>
+
+                                <ul>
+                                    <li><a href="https://www.icann.org/news/blog/do-you-have-a-domain-name-here-s-what-you-need-to-know-part-4">https://www.icann.org/news/blog/do-you-have-a-domain-name-here-s-what-you-need-to-know-part-4</a></li>
+                                    <li><a href="https://www.eurodns.com/blog/domain-name-security-best-practices">https://www.eurodns.com/blog/domain-name-security-best-practices</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Have a public security policy</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>This is a page on your corporate website describing how you secure your users and their data, and how you plan to respond to external bug reports. You should advise that you support responsible disclosure. Keep in mind that you will likely receive reports of varying impact, so having a process for prioritizing them is important.</p>
+
+                                <p>Read more:</p>
+
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/resources/security-page">https://www.sqreen.com/resources/security-page</a></li>
+                                    <li><a href="https://www.airbnb.com/security">https://www.airbnb.com/security</a></li>
+                                    <li><a href="https://www.apple.com/support/security/">https://www.apple.com/support/security/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Have a security incident response plan</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>This will allow whoever is in charge at the time of a breach to communicate accordingly about an incident and will allow for the fastest response. Trying to make your plan up in the heat of the moment can make the impact of breaches much worse.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://zeltser.com/security-incident-response-program-tips/">https://zeltser.com/security-incident-response-program-tips/</a></li>
+                                    <li><a href="https://github.com/meirwah/awesome-incident-response">https://github.com/meirwah/awesome-incident-response</a></li>
+                                    <li><a href="https://security.openstack.org/vmt-process.html">https://security.openstack.org/vmt-process.html</a></li>
+                                    <li><a href="https://medium.com/@magoo/incident-response-writing-a-playbook-773e7920f171">https://medium.com/@magoo/incident-response-writing-a-playbook-773e7920f171</a></li>
+                                    <li><a href="https://www.amazon.com/How-Measure-Anything-Cybersecurity-Risk/dp/1536669741">https://www.amazon.com/How-Measure-Anything-Cybersecurity-Risk/dp/1536669741</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Have an internal security policy</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>This is a short document outlining the security requirements in your company for your employees and defining who is responsible and who they can turn to for all things security. Make this part of onboarding and ensure that it’s easy to find.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://hbr.org/2017/11/the-key-to-better-cybersecurity-keep-employee-rules-simple">https://hbr.org/2017/11/the-key-to-better-cybersecurity-keep-employee-rules-simple</a></li>
+                                    <li><a href="https://medium.com/starting-up-security/starting-up-security-policy-104261d5438a">https://medium.com/starting-up-security/starting-up-security-policy-104261d5438a</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Leverage tools to prioritize your security</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Early on, you’ll want to focus on enhancing your security with smart internal practices. However, as you grow, it becomes more and more worth it to bring in some useful security tools. For instance, AWS offers AWS Trusted Advisor which, for a fraction of your billing, will provide you with actionable insights about your infrastructure security. Others can help you with different parts of your total security needs, from your application to your infrastructure.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com">https://www.sqreen.com</a></li>
+                                    <li><a href="https://aws.amazon.com/premiumsupport/technology/trusted-advisor/">https://aws.amazon.com/premiumsupport/technology/trusted-advisor/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Make sure all your critical services are secured</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Many companies rely on 3rd-party services and platforms like Google Apps, Slack, and Wordpress. These services all have default settings that should be improved to increase their security level. All these services should be updated and checked on a regular basis, particularly when new versions come out.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://blog.trailofbits.com/2015/07/07/how-to-harden-your-google-apps/">https://blog.trailofbits.com/2015/07/07/how-to-harden-your-google-apps/</a></li>
+                                    <li><a href="https://support.google.com/a/answer/7587183?hl=en">https://support.google.com/a/answer/7587183?hl=en</a></li>
+                                    <li><a href="https://codex.wordpress.org/Hardening_WordPress">https://codex.wordpress.org/Hardening_WordPress</a></li>
+                                    <li><a href="https://medium.com/@longtermsec/more-tips-for-securing-your-g-suite-4d617bd04bc8">https://medium.com/@longtermsec/more-tips-for-securing-your-g-suite-4d617bd04bc8</a></li>
+                                    <li><a href="https://get.slack.help/hc/en-us/articles/115004155306-Security-tips-to-protect-your-workspace">https://get.slack.help/hc/en-us/articles/115004155306-Security-tips-to-protect-your-workspace</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Prepare your security for scale</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Scale comes to each company differently. In many startups, scale occurs on various levels, whether it is in the size of the sales team, a big growth in the engineering team, opening new offices, etc. Each of these scaling events brings specific challenges. For example, how are you gonna run your security onboarding in a new office abroad if the employees there don’t speak the same language? It’s important to evaluate your security policies and practices with each scaling event you have.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://ayeks.de/post/2018-06-11-automating_and_scaling_security/">https://ayeks.de/post/2018-06-11-automating_and_scaling_security/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-b+"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Protect against domain name phishing</p>
+                                    <span class="category">series B+</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Some attackers buy domain names that are similar to yours, by dropping letters or using homoglyphs. For instance phishng.com instead of phishing.com. Registering lookalike domain names will help you prevent against this. Also, monitoring Certificate Transparency can help in proactively detecting attacks.</p>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Set up a bug bounty program</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>A bug bounty program will allow external hackers to report vulnerabilities. Most of the bug bounty programs set rewards in place. You need security-aware people inside your development teams to evaluate any reports you receive, so make sure that you have the right internal resources before you set up such a program.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.yeswehack.com/en/index.html">https://www.yeswehack.com/en/index.html</a></li>
+                                    <li><a href="https://hackerone.com/">https://hackerone.com/</a></li>
+                                    <li><a href="https://cobalt.io">https://cobalt.io</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="scrollspy" id="your-product-users">
+                    <h2>Your product users</h2>
+                    <ul class="checklist">
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Double down on user privacy</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Many successful attacks happen through social engineering. This means that access to your users’ data has to be a big deal to you. Require a user’s explicit consent before allowing support / sales to access their data. This access should also be audited. Good security hygiene here can make social engineering attempts to get into your users’ data harder.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://resources.infosecinstitute.com/5-best-practices-for-ensuring-data-privacy/">https://resources.infosecinstitute.com/5-best-practices-for-ensuring-data-privacy/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Encourage your users to use 2FA and uplevel your authentication security</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>As you get higher profile customers, you will be required to implement stronger security practices. This includes offering them 2FA, role-based account management, SSO, etc. Often times, these features are entry level requirements for more enterprise deals.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://auth0.com/">https://auth0.com/</a></li>
+                                    <li><a href="https://www.okta.com/">https://www.okta.com/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["seed"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Enforce a password policy</p>
+                                    <span class="category">seed</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Your users’ accounts will be much harder to steal if you require them to use strong passwords. Ideally, stick with common strong password policy requirements, to prevent your users from getting frustrated at not remembering some arcane rule.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.digicert.com/blog/creating-password-policy-best-practices/">https://www.digicert.com/blog/creating-password-policy-best-practices/</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li data-groups='["series-a"]' class="single-item">
+                            <div class="header-item">
+                                <div class="check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="--main-color: #772C75">
+                                        <g fill="none" fill-rule="evenodd" stroke-width="3" transform="translate(2 2)">
+                                            <path stroke="#772C75" d="M6 11.402l2.874 2.934L16.06 7"/>
+                                            <circle cx="11" cy="11" r="11"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="expend-bar">
+                                    <p>Monitor your user’s suspicious activities</p>
+                                    <span class="category">series A</span>
+                                </div>
+                                <div class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" class="arrow" >
+                                        <path fill="none" fill-rule="evenodd" stroke="#772C75" stroke-linecap="square" stroke-width="2" d="M2 2l7.5 7.57L17 2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="body-item">
+                                <p>Some users may behave suspiciously within your application, potentially trying to hack into your application, subvert your services, or bother your other customers. By monitoring suspicious users, you will be able to block or flag the illegitimate ones.</p>
+
+                                <p>Read more:</p>
+                                <ul>
+                                    <li><a href="https://www.sqreen.com/">https://www.sqreen.com/</a></li>
+                                    <li><a href="https://castle.io">https://castle.io</a></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="sharing-block">
+                <h4>Did you like this resource?</h4>
+                <span class="subtitle">Spread the word about improving security best practices.</span>
+                <ul class="socials">
+                    <li>
+                        <a id="HA-share-on-tw" class="tw" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsaas-cto-security-checklist&text=SaaS+CTO+Security+Checklist&via=SqreenIO&related=SqreenIO">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 30 30">
+                                <path fill="#787878" d="M9.5 27.2C20.8 27.2 27 17.8 27 9.7v-.8c1.1-.8 2.2-1.9 3-3.2-1.1.5-2.3.8-3.5 1 1.3-.8 2.2-2 2.7-3.4-1.2.7-2.6 1.2-3.9 1.5-2.3-2.5-6.2-2.6-8.7-.3-1.6 1.5-2.3 3.8-1.8 5.9-5-.2-9.6-2.6-12.7-6.4-1.6 2.8-.8 6.4 1.9 8.2-1 0-1.9-.3-2.8-.8v.1c0 2.9 2.1 5.4 4.9 6-.9.2-1.9.3-2.8.1.8 2.5 3.1 4.2 5.7 4.3-2.2 1.7-4.9 2.6-7.6 2.6-.5 0-1 0-1.5-.1 2.9 1.9 6.2 2.8 9.6 2.8" class="st0"/>
+                            </svg>
+                            <span>Tweet</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="HA-share-on-fb" class="fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsaas-cto-security-checklist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="25" viewBox="0 0 12 25">
+                                <path fill-rule="evenodd" d="M11.63 8.095H7.67V5.5c0-.974.646-1.2 1.1-1.2h2.797V.014L7.717 0C3.443 0 2.47 3.195 2.47 5.24v2.855H0v4.414h2.47V25h5.2V12.51h3.507l.454-4.415"/>
+                            </svg>
+                            <span>Share</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="HA-share-on-lk" class="lk" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.sqreen.com%2Fchecklists%2Fsaas-cto-security-checklist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                <path fill-rule="evenodd" d="M21.128 20.927h-3.764v-6.04c0-1.516-.544-2.552-1.907-2.552-1.04 0-1.66.698-1.932 1.373-.1.24-.123.578-.123.915v6.304H9.637s.05-10.23 0-11.288h3.765v1.596c.5-.77 1.395-1.864 3.393-1.864 2.476 0 4.333 1.614 4.333 5.082v6.472zM5.672 8.097h-.025c-1.263 0-2.08-.867-2.08-1.95 0-1.107.843-1.95 2.13-1.95 1.288 0 2.08.843 2.106 1.95 0 1.083-.818 1.95-2.13 1.95zM3.79 20.927h3.764V9.64H3.79v11.287zM23.08 0H1.84C.825 0 0 .802 0 1.79v21.42C0 24.196.824 25 1.84 25h21.24c1.018 0 1.843-.803 1.843-1.79V1.79c0-.988-.825-1.79-1.842-1.79z"/>
+                            </svg>
+                            <span>Share</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="product-page">
+    <img src="https://d33wubrfki0l68.cloudfront.net/581c362c98647a1f60b0836031af8c398e14e2d8/37d35/assets/img/logos/sqreen-logo-bw-white.svg" alt="Sqreen logo" class="pp-logo">
+    <svg class="pp-shield" viewBox="0 0 120 171" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient x1="23.8744521%" y1="1.45692568%" x2="77.7628891%" y2="90.5897815%" id="a">
+                <stop class="bright-color" offset="0%"/>
+                <stop stop-color="#772C75" offset="100%" />
+            </linearGradient>
+        </defs>
+        <path d="M448.3713-30.4794913c17.424 0 33.2046-6.9726928 49.6287-18.2594959V95.5159s-14.355 51.321357-99 74.654558C314.355 146.837257 300 95.5159 300 95.5159V-48.7389872c16.4142 11.2868031 32.2047 18.2594959 49.6188 18.2594959 19.9089 0 37.6596-9.105402 49.2921-23.3332012h.1683c11.6325 14.2277992 29.3832 23.3332012 49.2921 23.3332012zm-103.899032 74.063798l5.174524 5.3475652 5.174523-5.3475652 25.563327-26.41819 5.06799-5.2374683-10.349048-10.25927614-5.06799 5.23746829-20.391616 21.06771715-5.047993-5.2168032-5.06799-5.2374683-10.349048 10.2592762 5.06799 5.2374683 10.225331 10.567276zm0 51.3722821l5.174524 5.3475652 5.174523-5.3475652 25.563327-26.4181899 5.06799-5.2374683-10.349048-10.2592762-5.06799 5.2374683-20.311593 21.1504162-5.128016-5.2995022-5.06799-5.2374683-10.349048 10.2592762 5.06799 5.2374682 10.225331 10.567276zm111.049397-60.4089559h7.046756V20.1633938h-70.863158v14.3842391h63.816402zm0 55.4820647h7.046756v-14.384239h-70.863158v14.384239h63.816402z" transform="translate(-300)" fill="url(#a)" fill-rule="evenodd"/>
+    </svg>
+    <div class="pp-title">Trusted by security teams, loved by developers.</div>
+    <p>Monitoring and protection platform made to be incredibly powerful yet very easy to use.</p>
+    <ul class="pp-three-points">
+        <li>
+            <div class="pp-picture">
+                <img src="https://d33wubrfki0l68.cloudfront.net/7ef9ee42033a9102278f53725f2c67ae85e2731c/d977c/assets/img/icons/icon-radar.svg" alt="">
+            </div>
+            <p><strong>Unmatched security insights:</strong> Access to more detailed security analytics than ever, including applevel incidents you can act on immediately.</p>
+        </li>
+        <li>
+            <div class="pp-picture">
+                <img src="https://d33wubrfki0l68.cloudfront.net/f2cd2f557f5f9df3053e46278153c57925e36b2e/d00b3/assets/img/icons/shield-dashed.svg" alt="">
+            </div>
+            <p><strong>Instant Protection:</strong> Out-of-the-box modules protect apps against a broad array of threats. Setup takes minutes, no config required.</p>
+        </li>
+        <li>
+            <div class="pp-picture">
+                <img src="https://d33wubrfki0l68.cloudfront.net/78db30d2378d66e773d7b7d413c01c296a042bdd/55bb3/assets/img/icons/icon-brick.svg" alt="">
+            </div>
+            <p><strong>Easily meet enterprise compliance needs:</strong> Get access to the best controls without hiring expensive security teams or consultants.</p>
+        </li>
+    </ul>
+    <div class="pp-footer">
+        <p>Start your free trial at <a href="https://www.sqreen.com">sqreen.com</a></p>
+    </div>
+</div>
+<div class="last-page">
+    <div id="qrcode"></div>
+    <div>
+        <p>Want this handbook as a PDF?</p>
+        <p>Scan the QR-code, or go to:</p>
+        <p>https://www.sqreen.com/checklists/saas-cto-security-checklist</p>
+    </div>
+</div>
+
+<section class="newsletter">
+    <div class="wrapper">
+        <div class="left">
+            <img src="https://d33wubrfki0l68.cloudfront.net/a62fdc8b30e1ea75724fdbe56d53e810ff89c5a5/16b32/assets/img/illustrations/paper-plane-illu.svg" alt="Paper plan illustration">
+        </div>
+        <div class="right">
+            <h3>Stay in touch!</h3>
+            <p>We're publishing great new resources every week.<br>Get them straight to your inbox.</p>
+            <script src="https://go.sqreen.com/js/forms2/js/forms2.min.js"></script>
+            <form class="newsletter-form" id="mktoForm_1047"></form>
+        </div>
+    </div>
+</section>
+
+<script>
+    MktoForms2.loadForm("https://go.sqreen.com", "544-MID-880", 1047);
+    MktoForms2.whenReady(function (form) {
+        form.onSubmit(function(){
+            heap.addUserProperties({email: form.vals().Email});
+        });
+    });
+</script>
+
+<footer>
+
+    <div class="ready">
+        <div class="wrapper">
+            <div>
+                <h4>Ready to protect your app?</h4>
+                <div class="subtitle">Get started for free · 5 min installation · No credit card required.</div>
+            </div>
+            <div>
+                <a href="https://my.sqreen.com/signup" class="button is-inline-block is-bold is-white is-big">FREE TRIAL</a>
+                <span class="or">OR</span>
+                <a href="https://www.sqreen.com/demo" class="button is-inline-block link white">Schedule a demo</a>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="wrapper">
+            <ul>
+                <li>
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/product">Product</a></li>
+                        <li><a href="/modules">Modules Hub</a></li>
+                        <li><a href="/pricing">Pricing</a></li>
+                        <li><a href="/customers">Customers</a></li>
+                        <li><a href="https://www.sqreen.com/demo">Schedule a demo</a></li>
+                        <li><a href="/solutions/engineering-teams">For Engineering Teams</a></li>
+                        <li><a href="/solutions/security-teams">For Security Teams</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/company">About</a></li>
+                        <li><a href="/company#jobs">Jobs</a></li>
+                        <li><a href="/terms">Terms</a></li>
+                        <li><a href="/privacy">Privacy</a></li>
+                        <li><a href="/press">Press</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Docs &amp; help</h4>
+                    <ul>
+                        <li><a href="https://docs.sqreen.com/">Documentation</a></li>
+                        <li><a href="https://blog.sqreen.com">Blog</a></li>
+                        <li><a href="/resources">Resources</a></li>
+                        <li><a href="/web-application-security">Learning Center</a></li>
+                        <li><a href="mailto:support@sqreen.com?Subject=Sqreen">Support</a></i>
+                        <li><a href="https://changelog.sqreen.com">Change Log</a></li>
+                        <li><a href="https://sqreen.status.io">Service Status</a></li>
+                        <li><a href="/security">Security</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Talk to sales</h4>
+                    <ul>
+                        <li>
+                            Email: <a href="mailto:sales@sqreen.com">sales@sqreen.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <br>
+                    <h4>Stay in touch</h4>
+                    <ul class="sns">
+                        <li>
+                            <a target="_blank" href="https://github.com/Sqreen">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/8f09b98b1334c5ef2cb2f5dc260971229d1a06b3/79a66/assets/img/logos/github-icon.svg" alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://twitter.com/SqreenIO">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/3ff3317a8dc0f0e4e4917f2ae8970b4e80cda5b5/80662/assets/img/logos/twitter-icon.svg" alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.linkedin.com/company/sqreen">
+                                <img src="https://d33wubrfki0l68.cloudfront.net/cc3606fa27a57e4285450f26a02fed156da314fb/88ba8/assets/img/logos/linkedin-icon.svg" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                    <span class="copyright">© 2019 sqreen.com</span>
+                    <div class="badges">
+                        <a title="Realtime application protection" href="https://docs.sqreen.com/faq/sqreen-badges/">
+                            <img style="width:109px;height:36px" src="https://assets.sqreen.com/badges/20171107/sqreen-light-badge.svg" alt="Sqreen | Runtime Application Protection" />
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</footer>
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+    // Changing color of navigation
+    //=========================================
+    $(document).ready(function(){
+        if ($('header').offset().top >= (window.innerHeight/6)) {
+            $('header').addClass('scrolled');
+        }
+        $(window).on('scroll', function() {
+            var winHeight = window.innerHeight;
+            var winScroll = $('header').offset().top;
+            if (winScroll >= 20) {
+                $('header').addClass('scrolled');
+            }
+            else {
+                $('header').removeClass('scrolled');
+            }
+        });
+
+        // Menu mobile
+        $('.burger').on('click', function(){
+            $('header').toggleClass('open');
+        });
+
+        // Add tracking data to dashboard links if available
+        var attributions = location.search
+            .slice(1)
+            .split("&")
+            .filter(function(s) {
+                return s.startsWith("utm_");
+            })
+            .join("&");
+
+        if (attributions.length > 0 || document.referrer.length > 0) {
+            $('a[href="https://my.sqreen.com/signup"]').attr(
+                "href",
+                "https://my.sqreen.com/signup?" +
+                attributions +
+                "&referrer=" +
+                btoa(document.referrer)
+            );
+            $('a[href="https://my.sqreen.com/login"]').attr(
+                "href",
+                "https://my.sqreen.com/login?" +
+                attributions +
+                "&referrer=" +
+                btoa(document.referrer)
+            );
+        }
+
+        // Add hidden Segment id to netlify forms
+        analytics.ready(function() {
+            var user = analytics.user();
+
+            if (user.id()) {
+                $('input[data-fields=sqreenUserId]').attr('value', user.id());
+            } else {
+                $('input[data-fields=segmentId]').attr('value', user.anonymousId());
+            }
+        })
+
+    });
+</script>
+
+<p class="cookies-warning" style="display:none">
+    Sqreen uses cookies to make its website easier to use. <a href="/privacy">Learn more about cookies.</a>
+    <a href="#close" class="close">
+        X
+    </a>
+</p>
+
+<script>
+    $(function() {
+        var text = $('.cookies-warning');
+        var sign = text.find('.close');
+        cookieTxt = "cookiesWarningShown=1; expires=Wed, 07 Jul 3015 07:28:00 GMT";
+        if (document.cookie.indexOf("cookiesWarningShown=1") !== -1) {
+            return
+        }
+        text.show();
+        sign.click(function() {
+            text.hide();
+            document.cookie = cookieTxt;
+        })
+    })
+</script>
+
+
+
+<script src="/assets/js/shuffle.min.js"></script>
+<script src="/assets/js/qrcode.min.js"></script>
+<script>
+    MktoForms2.loadForm("https://go.sqreen.com", "544-MID-880", 1070);
+    MktoForms2.whenReady(function (form) {
+        $('.mktoForm style').remove();
+        $('.mktoLogicalField').each(function() {
+            $(this).parent().parent().addClass('checkboxField');
+        })
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        form.vals({
+            "utm_source": getParameterByName('utm_source'),
+            "utm_medium": getParameterByName('utm_medium'),
+            "utm_campaign": getParameterByName('utm_campaign')
+        });
+        form.onSubmit(function(){
+            heap.addUserProperties({email: form.vals().Email});
+        });
+    });
+    new QRCode(document.getElementById("qrcode"), {
+        text: "https://www.sqreen.com/checklists/saas-cto-security-checklist",
+        width: 200,
+        height: 200,
+        colorDark : "#000000",
+        colorLight : "transparent",
+    });
+
+    // Shuffle filtering
+    //========================================
+    var Shuffle = window.Shuffle;
+    var shuffleInstance = window.shuffleInstance;
+    var elements = document.querySelectorAll('.checklist');
+    window.shuffles = [];
+
+    var searchParams = '';
+
+    $('document').ready(function() {
+        searchParams = new URLSearchParams(window.location.search);
+
+        if (!searchParams.has('print')) {
+            window.elements.forEach(function(e, i) {
+                shuffles[i] = new Shuffle(e, {
+                    itemSelector: '.single-item',
+                });
+            });
+        }
+
+    });
+
+    $('.stages-selector li').each(function(i) {
+        $(this).attr('id', i);
+    });
+
+    $('.stages-selector li').on('click', function() {
+        var filter = [];
+        var stagePosition = parseInt($(this).attr('id'));
+        $('.stages-selector li').removeClass('active');
+        for (i = 0; i <= stagePosition; i++) {
+            filter.push($('#'+i).attr("class"));
+            $('#'+i).addClass("active")
+        }
+        elements.forEach(function(e, i) {
+            shuffles[i].filter(filter);
+        });
+    })
+
+    // Scrollspy
+    //========================================
+    $(function() {
+        var lastId,
+            topMenu = $(".checklist-container nav ul"),
+            topMenuHeight = topMenu.outerHeight()+200,
+            menuItems = topMenu.find("a"),
+            scrollItems = menuItems.map(function(){
+                var item = $($(this).attr("href"));
+                if (item.length) { return item; }
+            });
+        menuItems.click(function(e){
+            var href = $(this).attr("href"),
+                offsetTop = href === "#" ? 0 : $(href).offset().top - 120;
+            $('html, body').stop().animate({
+                scrollTop: offsetTop
+            }, 1000);
+            // e.preventDefault();
+        });
+
+        $(window).scroll(function(){
+            var fromTop = $(this).scrollTop()+topMenuHeight;
+            var cur = scrollItems.map(function(){
+                if ($(this).offset().top < fromTop)
+                    return this;
+            });
+            cur = cur[cur.length-1];
+            var id = cur && cur.length ? cur[0].id : "";
+
+            if (lastId !== id) {
+                lastId = id;
+                menuItems
+                    .parent().removeClass("active")
+                    .end().filter("[href='#"+id+"']").parent().addClass("active");
+            }
+        });
+    });
+
+    // Check
+    //========================================
+    $('.check').click(function(){
+        if ($(this).hasClass('checked')) {
+            $(this).removeClass('checked');
+            $(this).parent().find('.expend-bar').removeClass('checked');
+        }
+        else {
+            $(this).addClass('checked');
+            $(this).parent().find('.expend-bar').addClass('checked');
+        }
+    });
+
+    // Progress bar
+    //========================================
+    var percentageTrigger = 30;
+    var checksTrigger = 3;
+    var modalTriggered= false;
+
+    $('.check').on('click', function() {
+        if ($(this).parent().parent().parent().hasClass('shuffle')) {
+            calculateProgressStage()
+        }
+        else {
+            calculateProgress()
+        }
+    });
+
+    $('.close-modal').on('click', function() {
+        $('.completed-modal').removeClass('open');
+    });
+
+    function calculateProgressStage() {
+        var totalChecks = $('.checklist li.shuffle-item--visible').length;
+        var checksChecked = $('.checklist li.shuffle-item--visible .check.checked').length;
+        var percentage = Math.round(100*checksChecked/totalChecks);
+
+        // TO TRIGGER ON CHECKS
+        if (!modalTriggered && checksChecked >= checksTrigger) {
+            // if (!modalTriggered && percentage >= percentageTrigger) {
+            setTimeout(function(){$('.completed-modal').addClass('open')}, 1500);
+            modalTriggered = true;
+        }
+
+        $('.progress-number').text(percentage+'%');
+        $('.bar').css('width', percentage+'%');
+    }
+
+    function calculateProgress() {
+        var totalChecks = $('.checklist li').length;
+        var checksChecked = $('.checklist li .check.checked').length;
+        var percentage = Math.round(100*checksChecked/totalChecks);
+
+        // TO TRIGGER ON CHECKS
+        if (!modalTriggered && checksChecked >= checksTrigger) {
+            // if (!modalTriggered && percentage >= percentageTrigger) {
+            setTimeout(function(){$('.completed-modal').addClass('open')}, 1500);
+            modalTriggered = true;
+        }
+
+        $('.progress-number').text(percentage+'%');
+        $('.bar').css('width', percentage+'%');
+    }
+
+    // Expend/collapse
+    //========================================
+    $('.btn, .expend-bar').click(function(){
+        var parent = $(this).parent().parent();
+        var body = $(parent).find(".body");
+
+        if ($(parent).hasClass('expend')) {
+            $(parent).removeClass('expend');
+            $(body).hide();
+
+            window.elements.forEach(function(e, i) {
+                shuffles[i].update();
+            });
+
+        }
+        else {
+            $(parent).addClass('expend');
+            $(body).show();
+
+            window.elements.forEach(function(e, i) {
+                shuffles[i].update();
+            });
+
+        }
+    });
+
+    // Social
+    //========================================
+    $('.socials a, .social a').on('click', function(e){
+        e.preventDefault();
+        window.open($(this).attr('href'), "", "width=530,height=450");
+    });
+
+    // Converting color
+    //=================================================
+    function hexToHSL(H) {
+        // Convert hex to RGB first
+        let r = 0, g = 0, b = 0;
+        if (H.length == 4) {
+            r = "0x" + H[1] + H[1];
+            g = "0x" + H[2] + H[2];
+            b = "0x" + H[3] + H[3];
+        } else if (H.length == 7) {
+            r = "0x" + H[1] + H[2];
+            g = "0x" + H[3] + H[4];
+            b = "0x" + H[5] + H[6];
+        }
+        // Then to HSL
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        let cmin = Math.min(r,g,b),
+            cmax = Math.max(r,g,b),
+            delta = cmax - cmin,
+            h = 0,
+            s = 0,
+            l = 0;
+
+        if (delta == 0)
+            h = 0;
+        else if (cmax == r)
+            h = ((g - b) / delta) % 6;
+        else if (cmax == g)
+            h = (b - r) / delta + 2;
+        else
+            h = (r - g) / delta + 4;
+
+        h = Math.round(h * 60);
+
+        if (h < 0)
+            h += 360;
+
+        l = (cmax + cmin) / 2;
+        s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+        s = +(s * 100).toFixed(1);
+        l = +(l * 100).toFixed(1);
+
+        return "hsl(" + h + "," + s + "%," + (l+15) + "%)";
+    }
+    function HSLToHex(hsl) {
+        let sep = hsl.indexOf(",") > -1 ? "," : " ";
+        hsl = hsl.substr(4).split(")")[0].split(sep);
+
+        let h = hsl[0],
+            s = hsl[1].substr(0,hsl[1].length - 1) / 100,
+            l = hsl[2].substr(0,hsl[2].length - 1) / 100;
+
+        // Strip label and convert to degrees (if necessary)
+        if (h.indexOf("deg") > -1)
+            h = h.substr(0,h.length - 3);
+        else if (h.indexOf("rad") > -1)
+            h = Math.round(h.substr(0,h.length - 3) * (180 / Math.PI));
+        else if (h.indexOf("turn") > -1)
+            h = Math.round(h.substr(0,h.length - 4) * 360);
+        if (h >= 360)
+            h %= 360;
+
+        let c = (1 - Math.abs(2 * l - 1)) * s,
+            x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+            m = l - c/2,
+            r = 0,
+            g = 0,
+            b = 0;
+
+        if (0 <= h && h < 60) {
+            r = c; g = x; b = 0;
+        } else if (60 <= h && h < 120) {
+            r = x; g = c; b = 0;
+        } else if (120 <= h && h < 180) {
+            r = 0; g = c; b = x;
+        } else if (180 <= h && h < 240) {
+            r = 0; g = x; b = c;
+        } else if (240 <= h && h < 300) {
+            r = x; g = 0; b = c;
+        } else if (300 <= h && h < 360) {
+            r = c; g = 0; b = x;
+        }
+        // Having obtained RGB, convert channels to hex
+        r = Math.round((r + m) * 255).toString(16);
+        g = Math.round((g + m) * 255).toString(16);
+        b = Math.round((b + m) * 255).toString(16);
+
+        // Prepend 0s, if necessary
+        if (r.length == 1)
+            r = "0" + r;
+        if (g.length == 1)
+            g = "0" + g;
+        if (b.length == 1)
+            b = "0" + b;
+
+        return "#" + r + g + b;
+    }
+    function updateColor() {
+        $('.bright-color').attr('stop-color', HSLToHex(hexToHSL("#772C75")));
+        $('.last-page').css('background', 'linear-gradient(to bottom, '+HSLToHex(hexToHSL("#772C75"))+' 0%,#772C75 100%)');
+    }
+
+    $('document').ready(function() {
+        updateColor();
+    });
+</script>
+</body>
+</html>
