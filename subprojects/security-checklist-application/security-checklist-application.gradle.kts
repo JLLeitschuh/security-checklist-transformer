@@ -8,6 +8,7 @@ application {
 }
 
 dependencies {
-    implementation("com.github.ajalt:clikt:2.1.0")
+    implementation("com.github.ajalt:clikt:2.2.0")
     implementation(project(":subprojects:security-checklist-parser"))
+    implementation(project(":subprojects:security-checklist-uploader-github"))
 }

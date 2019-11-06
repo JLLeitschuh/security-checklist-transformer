@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.diffplug.gradle.spotless") version "3.24.3"
     id("org.jetbrains.kotlin.jvm").version("1.3.21").apply(false)
@@ -17,6 +19,12 @@ allprojects {
         kotlinGradle {
             ktlint()
         }
+    }
+}
+
+allprojects {
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions.jvmTarget = "1.8"
     }
 }
 

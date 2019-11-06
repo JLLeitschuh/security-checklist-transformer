@@ -5,6 +5,10 @@ data class Checklist(
     val name: String,
     val items: List<ChecklistGroup>
 ) {
+    val phases: Set<String> by lazy {
+        items.flatMap { it.phases }.toSet()
+    }
+
     fun toIndentedString(indents: Int): String {
         val indent = buildIndentSize(indents)
         return buildString {
@@ -15,13 +19,17 @@ data class Checklist(
         }
     }
 
-    fun countOverview() = "$name: ${items.map { it.items.count() }.sum()}"
+    fun countOverview() = "$name Checklist: ${items.map { it.items.count() }.sum()}"
 }
 
 data class ChecklistGroup(
     val name: String,
     val items: List<ChecklistItem>
 ) {
+    val phases: Set<String> by lazy {
+        items.map { it.phase }.toSet()
+    }
+
     fun toIndentedString(indents: Int): String {
         val indent = buildIndentSize(indents)
         return buildString {
@@ -43,6 +51,7 @@ data class ChecklistItem(
         return buildString {
             append(indent)
             append(name)
+            append(" Checklist")
             append(" ")
             append("[$phase]")
             append('\n')
