@@ -1,6 +1,9 @@
 package org.jlleitschuh.security.checklist.uploader.github
 
 import org.jlleitschuh.security.checklist.core.Checklist
+import org.jlleitschuh.security.checklist.core.ChecklistItem
+import org.kohsuke.github.GHIssueState
+import org.kohsuke.github.GHMilestone
 import org.kohsuke.github.GHProject
 import org.kohsuke.github.GHProjectColumn
 import org.kohsuke.github.GHRepository
@@ -26,43 +29,84 @@ object GitHubUploader {
         val columns =
             project.addColumns(checklists)
         repository.addLabels(checklists)
-        repository.createIssuesFor(checklists) { columns.getValue(it) }
+        val milestones =
+            repository.addMilestones(checklists)
+        repository.createIssuesFor(
+            checklists,
+            columnProvider = { columns.getValue(it) },
+            milestoneProvider = { milestones.getValue(it) }
+        )
     }
 
-    private fun GHProject.addColumns(checkLists: Collection<Checklist>): Map<String, GHProjectColumn> {
+    private fun GHProject.addColumns(checklists: Collection<Checklist>): Map<String, GHProjectColumn> {
         val phases =
-            checkLists.flatMap { list -> list.phases.flatMap { list.phases } }.toSet()
+            checklists.flatMap { list -> list.phases.flatMap { list.phases } }.toSet()
         val columns =
-            listColumns().iterator().asSequence().map { it.name }.toSet()
+            listColumns().asSequence().map { it.name }.toSet()
         val toCreate = phases - columns
         println("To create the following columns: ${toCreate.joinToString()}")
         // First create the columns
         toCreate.forEach { createColumn(it) }
         // Then get all of the columns back again
-        return listColumns().iterator().asSequence().map { it.name to it }.toMap()
+        return listColumns().asSequence().map { it.name to it }.toMap()
     }
 
-    private fun GHRepository.addLabels(checkList: Collection<Checklist>) {
+    private fun GHRepository.addLabels(checklists: Collection<Checklist>) {
         val categories =
-            checkList.flatMap { list -> list.items }.map { it.name }.toSet()
+            checklists.flatMap { list -> list.items }.map { group -> group.name }.toSet()
         val labels =
-            listLabels().iterator().asSequence().map { it.name }.toSet()
+            listLabels().asSequence().map { it.name }.toSet()
         val toCreate = categories - labels
         println("To create the following categories: ${toCreate.joinToString()}")
         toCreate.forEach { createLabel(it, labelColor) }
     }
 
-    private fun GHRepository.createIssuesFor(checkLists: Collection<Checklist>, columnProvider: (name: String) -> GHProjectColumn) {
-        checkLists.forEach { createIssuesFor(it, columnProvider) }
+    private fun GHRepository.addMilestones(checklists: Collection<Checklist>): Map<String, GHMilestone> {
+        // Check for existing milestones
+        val milestones =
+            listMilestones(GHIssueState.OPEN).asSequence().map { it.title }.toSet()
+        // Create the milestones
+        checklists.forEach { checklist ->
+            val milestoneBody = "[${checklist.name} Checklist](${checklist.url})"
+            checklist
+                .items
+                .flatMap { group -> group.items }
+                .map { item -> checklist.milestoneName(item) }
+                .distinct()
+                .filter { milestoneName -> !milestones.contains(milestoneName) } // Don't create a new milestone if one already exists
+                .forEach { milestoneName -> createMilestone(milestoneName, milestoneBody) }
+        }
+        // Grab all existing milestones
+        return listMilestones(GHIssueState.OPEN).asSequence().map { it.title to it }.toMap()
     }
 
-    private fun GHRepository.createIssuesFor(checklist: Checklist, columnProvider: (name: String) -> GHProjectColumn) {
+    private fun GHRepository.createIssuesFor(
+        checklists: Collection<Checklist>,
+        columnProvider: (name: String) -> GHProjectColumn,
+        milestoneProvider: (name: String) -> GHMilestone
+    ) {
+        checklists.forEach { createIssuesFor(it, columnProvider, milestoneProvider) }
+    }
+
+    private fun GHRepository.createIssuesFor(
+        checklist: Checklist,
+        columnProvider: (name: String) -> GHProjectColumn,
+        milestoneProvider: (name: String) -> GHMilestone
+    ) {
+        println("Uploading Checklist: ${checklist.name}")
+        val size = checklist.items.flatMap { it.items }.count()
+        var index = 1
         checklist.items.forEach { group ->
             group.items.forEach { item ->
+                println("\t[$index/$size] ${item.name}")
+                index++
+                val milestone =
+                    milestoneProvider(checklist.milestoneName(item))
                 val issue =
                     createIssue(item.name)
                         .body(item.body)
                         .label(group.name)
+                        .milestone(milestone)
                         .create()
                 columnProvider(item.phase).createCard(issue)
             }
@@ -79,6 +123,9 @@ object GitHubUploader {
                 getOrganization(ghInfo.repositoryOwner).createRepository(ghInfo.repositoryName).create()
             }
         }
+
+    private fun Checklist.milestoneName(item: ChecklistItem) =
+        "$name Checklist: ${item.phase}"
 }
 
 

@@ -17,7 +17,10 @@ import org.jlleitschuh.security.checklist.uploader.github.GitHubUploader
 class ChecklistTransformer : CliktCommand(invokeWithoutSubcommand = true) {
     private val listNames by option()
     private val capitalizePhase: Boolean by option().flag(default = true)
+    private val capitalizeGroup: Boolean by option().flag(default = true)
     private val prependListNameToPhase: Boolean by option().flag(default = true)
+    private val variousSemanticFixes: Boolean by option().flag(default = true)
+    private val quoteBodyText: Boolean by option().flag(default = true)
     private val checklists by findObject { mutableListOf<Checklist>() }
 
     override fun run() {
@@ -26,7 +29,10 @@ class ChecklistTransformer : CliktCommand(invokeWithoutSubcommand = true) {
                 .values()
                 .map { loadChecklist(it) }
                 .mapIf(capitalizePhase) { doCapitalizePhase(it) }
+                .mapIf(capitalizeGroup) { doCapitalizeGroup(it) }
                 .mapIf(prependListNameToPhase) { doPrependListNameToPhase(it)}
+                .mapIf(variousSemanticFixes) { doSemanticFixes(it) }
+                .mapIf(quoteBodyText) { doQuoteBody(it) }
 
         checklists.addAll(earlyChecklist)
 

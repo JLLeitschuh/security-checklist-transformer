@@ -3,6 +3,8 @@ package org.jlleitschuh.security.checklist.core
 
 data class Checklist(
     val name: String,
+    val shortName: String,
+    val url: String,
     val items: List<ChecklistGroup>
 ) {
     val phases: Set<String> by lazy {
@@ -13,7 +15,7 @@ data class Checklist(
         val indent = buildIndentSize(indents)
         return buildString {
             append(indent)
-            append(name)
+            append(shortName)
             append('\n')
             append(items.joinToString(separator = "\n") { it.toIndentedString(indents + 1) })
         }

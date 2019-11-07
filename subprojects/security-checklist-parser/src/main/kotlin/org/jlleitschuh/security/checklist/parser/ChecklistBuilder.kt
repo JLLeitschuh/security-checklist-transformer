@@ -12,19 +12,21 @@ import java.nio.charset.Charset
 
 enum class NamedChecklist
 constructor(
-    private val descriptiveName: String,
-    internal val shortName: String = descriptiveName,
+    internal val descriptiveName: String,
+    internal val shortName: String,
     private val fileName: String,
-    private val baseUri: String
+    internal val baseUri: String
 ) {
+    @Suppress("unused")
     SaaS_CTO(
-        "SaaS CTO Security",
+        "SaaS CTO",
         shortName = "SaaS CTO",
         fileName = "/saas-cto-security-checklist.html",
         baseUri = "https://www.sqreen.com/checklists/saas-cto-security-checklist"
     ),
+    @Suppress("unused")
     SECURITY_ENGINEER(
-        "Security Engineer’s First 90 Days",
+        "Security Engineer",
         "SE90",
         fileName = "/security-engineer-checklist.html",
         baseUri = "https://www.sqreen.com/checklists/security-engineer-checklist"
@@ -41,7 +43,9 @@ constructor(
 fun loadChecklist(checklistName: NamedChecklist): Checklist {
     val groups = process(checklistName.loadDocument())
     return Checklist(
+        checklistName.descriptiveName,
         checklistName.shortName,
+        checklistName.baseUri,
         groups
     )
 }
