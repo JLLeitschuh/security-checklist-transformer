@@ -16,6 +16,7 @@ object GitHubUploader {
     fun setup(ghInfo: GitHubUploadInfo, checklists: Collection<Checklist>) {
         val gitHub = GitHub.connect()
 
+        // TODO: Maybe prompt the user to verify that they actually wanted to create a new repository.
         val repository by lazy {
             gitHub.getOrCreateRepository(ghInfo)
         }
