@@ -31,5 +31,5 @@ allprojects {
 tasks.named("wrapper", Wrapper::class) {
     gradleVersion = "5.6.2"
     distributionType = Wrapper.DistributionType.ALL
-    distributionSha256Sum = "bc03088fc7ecb43181b48367bd7589684340f9ae4ffd108fa717e49f4b0d3544"
+    distributionSha256Sum = "027fdd265d277bae65a0d349b6b8da02135b0b8e14ba891e26281fa877fe37a2"
 }
